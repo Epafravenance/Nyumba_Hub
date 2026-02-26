@@ -66,7 +66,7 @@
 
         <div class="filter-group">
           <label class="filter-label">City</label>
-          <select class="filter-select" id="filterCity">
+          <select class="filter-select" id="filterCity" title="Filter by city">
             <option value="">All Cities</option>
             <option value="dar">Dar es Salaam</option>
             <option value="arusha">Arusha</option>
@@ -80,7 +80,7 @@
 
         <div class="filter-group">
           <label class="filter-label">Type</label>
-          <select class="filter-select" id="filterType">
+          <select class="filter-select" id="filterType" title="Filter by property type">
             <option value="">Any Type</option>
             <option value="apartment">Apartment</option>
             <option value="house">House</option>
@@ -92,7 +92,7 @@
 
         <div class="filter-group">
           <label class="filter-label">Listing</label>
-          <select class="filter-select" id="filterListing">
+          <select class="filter-select" id="filterListing" title="Filter by listing type">
             <option value="">Rent or Buy</option>
             <option value="rent">For Rent</option>
             <option value="sale">For Sale</option>
@@ -101,7 +101,7 @@
 
         <div class="filter-group">
           <label class="filter-label">Bedrooms</label>
-          <select class="filter-select" id="filterBeds">
+          <select class="filter-select" id="filterBeds" title="Filter by number of bedrooms">
             <option value="">Any</option>
             <option value="1">1+</option>
             <option value="2">2+</option>
@@ -112,7 +112,7 @@
 
         <div class="filter-group">
           <label class="filter-label">Max Price (TZS)</label>
-          <select class="filter-select" id="filterPrice">
+          <select class="filter-select" id="filterPrice" title="Filter by maximum price">
             <option value="">Any Price</option>
             <option value="500000">500K</option>
             <option value="1000000">1M</option>
@@ -128,7 +128,7 @@
       <div class="filter-actions">
         <div class="filter-group">
           <label class="filter-label">Sort By</label>
-          <select class="filter-select" id="filterSort">
+          <select class="filter-select" id="filterSort" title="Sort properties by">
             <option value="newest">Newest First</option>
             <option value="price-asc">Price: Low → High</option>
             <option value="price-desc">Price: High → Low</option>
@@ -456,7 +456,7 @@
     <!-- end listings-grid -->
 
     <!-- Empty state (hidden by default) -->
-    <div class="empty-state" id="emptyState" style="display:none;">
+    <div class="empty-state hidden" id="emptyState">
       <div class="empty-icon">🏚️</div>
       <h3 class="empty-title">No Properties Found</h3>
       <p class="empty-desc">Try adjusting your filters or search a different city.</p>
@@ -465,13 +465,13 @@
 
     <!-- Pagination -->
     <div class="pagination-wrap" id="paginationWrap">
-      <button class="page-btn disabled"><i class="bi bi-chevron-left"></i></button>
+      <button class="page-btn disabled" title="Previous page"><i class="bi bi-chevron-left"></i></button>
       <button class="page-btn active">1</button>
       <button class="page-btn">2</button>
       <button class="page-btn">3</button>
       <span class="page-dots">…</span>
       <button class="page-btn">12</button>
-      <button class="page-btn"><i class="bi bi-chevron-right"></i></button>
+      <button class="page-btn" title="Next page"><i class="bi bi-chevron-right"></i></button>
     </div>
 
   </div>
