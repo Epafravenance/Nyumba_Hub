@@ -1,0 +1,595 @@
+/* ============================================================
+   NyumbaHub — Listings Page Styles
+   File: css/listings.css
+   Linked in: listings.html (after style.css)
+   ============================================================ */
+
+/* ────────────────────────────
+   NAV ACTIVE STATE
+──────────────────────────── */
+.nav-active {
+  color: var(--gold) !important;
+}
+
+/* ────────────────────────────
+   PAGE HEADER
+──────────────────────────── */
+.page-header {
+  padding: 160px 48px 60px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle glow */
+.page-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 300px;
+  background: radial-gradient(
+    ellipse,
+    rgba(201, 168, 76, 0.06) 0%,
+    transparent 65%
+  );
+  pointer-events: none;
+}
+
+.page-header-inner {
+  max-width: 700px;
+}
+
+.page-title {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 600;
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.page-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.page-subtitle {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* ────────────────────────────
+   FILTER BAR
+──────────────────────────── */
+.filter-bar {
+  position: sticky;
+  top: 0;
+  z-index: 900;
+  background: rgba(12, 12, 14, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 48px;
+}
+
+.filter-bar-inner {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  padding: 20px 0;
+  flex-wrap: wrap;
+}
+
+/* Search input */
+.filter-search {
+  position: relative;
+  flex: 1;
+  min-width: 200px;
+}
+
+.filter-search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  font-size: 0.85rem;
+  pointer-events: none;
+}
+
+.filter-input {
+  width: 100%;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 10px 14px 10px 36px;
+  color: var(--text);
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.85rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.filter-input::placeholder {
+  color: var(--muted);
+}
+
+.filter-input:focus {
+  border-color: var(--gold);
+}
+
+/* Filter dropdowns group */
+.filter-dropdowns {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.filter-label {
+  font-family: "DM Mono", monospace;
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.filter-select {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 8px 12px;
+  color: var(--text);
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.82rem;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  min-width: 130px;
+}
+
+.filter-select option {
+  background: var(--bg3);
+}
+
+.filter-select:focus {
+  border-color: var(--gold);
+}
+
+/* Sort + Reset row */
+.filter-actions {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.filter-reset-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  color: var(--muted);
+  padding: 8px 16px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.filter-reset-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* ────────────────────────────
+   LISTINGS LAYOUT
+──────────────────────────── */
+.listings-layout {
+  padding: 40px 48px 80px;
+}
+
+/* ────────────────────────────
+   RESULTS BAR
+──────────────────────────── */
+.results-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.results-count {
+  font-family: "DM Mono", monospace;
+  font-size: 0.78rem;
+  color: var(--muted);
+  letter-spacing: 1px;
+}
+
+.results-count span {
+  color: var(--gold);
+  font-weight: 500;
+}
+
+.view-toggle {
+  display: flex;
+  gap: 4px;
+}
+
+.view-btn {
+  width: 34px;
+  height: 34px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.view-btn:hover,
+.view-btn.active {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(201, 168, 76, 0.05);
+}
+
+/* ────────────────────────────
+   LISTINGS GRID
+──────────────────────────── */
+.listings-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* List view mode */
+.listings-grid.list-view {
+  grid-template-columns: 1fr;
+}
+
+.listings-grid.list-view .listing-card {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+}
+
+.listings-grid.list-view .listing-img-wrap {
+  height: 100%;
+  min-height: 180px;
+}
+
+.listings-grid.list-view .listing-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* ────────────────────────────
+   LISTING CARD
+──────────────────────────── */
+.listing-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s,
+    box-shadow 0.3s;
+}
+
+.listing-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(201, 168, 76, 0.3);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  color: inherit;
+}
+
+/* Image */
+.listing-img-wrap {
+  height: 210px;
+  position: relative;
+  overflow: hidden;
+}
+
+.listing-img {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  transition: transform 0.5s ease;
+}
+
+.listing-card:hover .listing-img {
+  transform: scale(1.05);
+}
+
+/* Badge */
+.listing-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-family: "DM Mono", monospace;
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 9px;
+  border-radius: 1px;
+}
+
+/* Save/heart button */
+.listing-save {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  background: rgba(12, 12, 14, 0.7);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  backdrop-filter: blur(8px);
+}
+
+.listing-save:hover,
+.listing-save.saved {
+  background: rgba(201, 168, 76, 0.15);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.listing-save.saved i::before {
+  content: "\f415"; /* bi-heart-fill */
+}
+
+/* Card body */
+.listing-body {
+  padding: 18px 20px 20px;
+}
+
+.listing-location {
+  font-family: "DM Mono", monospace;
+  font-size: 0.66rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.listing-title {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 600;
+  font-size: 1.2rem;
+  line-height: 1.3;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.listing-specs {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.listing-specs span {
+  font-size: 0.76rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.listing-specs i {
+  color: var(--gold);
+  font-size: 0.8rem;
+}
+
+.listing-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+.listing-price {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--gold2);
+}
+
+.listing-price small {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.68rem;
+  color: var(--muted);
+  font-weight: 300;
+}
+
+.listing-tag {
+  font-family: "DM Mono", monospace;
+  font-size: 0.62rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+  border-radius: 2px;
+}
+
+/* ────────────────────────────
+   EMPTY STATE
+──────────────────────────── */
+.empty-state {
+  text-align: center;
+  padding: 80px 24px;
+}
+
+.empty-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.empty-title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.empty-desc {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+
+/* ────────────────────────────
+   PAGINATION
+──────────────────────────── */
+.pagination-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 52px;
+}
+
+.page-btn {
+  width: 38px;
+  height: 38px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  color: var(--muted);
+  font-family: "DM Mono", monospace;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.page-btn.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #0c0c0e;
+  font-weight: 500;
+}
+
+.page-btn.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.page-dots {
+  color: var(--muted);
+  font-family: "DM Mono", monospace;
+  padding: 0 4px;
+}
+
+/* ────────────────────────────
+   RESPONSIVE — Tablet (≤ 992px)
+──────────────────────────── */
+@media (max-width: 992px) {
+  .page-header {
+    padding: 140px 24px 48px;
+  }
+  .filter-bar {
+    padding: 0 24px;
+  }
+  .filter-bar-inner {
+    gap: 12px;
+  }
+  .filter-dropdowns {
+    gap: 8px;
+  }
+  .filter-select {
+    min-width: 110px;
+  }
+  .filter-actions {
+    margin-left: 0;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .listings-layout {
+    padding: 32px 24px 60px;
+  }
+  .listings-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  .listings-grid.list-view {
+    grid-template-columns: 1fr;
+  }
+  .listings-grid.list-view .listing-card {
+    grid-template-columns: 200px 1fr;
+  }
+}
+
+/* ────────────────────────────
+   RESPONSIVE — Mobile (≤ 576px)
+──────────────────────────── */
+@media (max-width: 576px) {
+  .filter-bar-inner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .filter-search {
+    min-width: 100%;
+  }
+  .filter-dropdowns {
+    flex-direction: column;
+  }
+  .filter-select {
+    min-width: 100%;
+  }
+  .listings-grid {
+    grid-template-columns: 1fr;
+  }
+  .listings-grid.list-view .listing-card {
+    grid-template-columns: 1fr;
+  }
+  .listings-grid.list-view .listing-img-wrap {
+    min-height: 200px;
+  }
+}

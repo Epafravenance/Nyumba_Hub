@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luxury Ocean-View Apartment — NyumbaHub</title>
+
+  <!-- ── External Libraries ── -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+
+  <!-- ── Shared CSS ── -->
+  <link rel="stylesheet" href="css/style.css"/>
+  <!-- ── Page CSS ── -->
+  <link rel="stylesheet" href="css/property.css"/>
+</head>
+<body>
+
+  <!-- ══════════════════════════
+       NAVBAR
+  ══════════════════════════ -->
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">Nyumba<span>Hub</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="listings.html">Browse</a></li>
+      <li><a href="listings.html?type=rent">For Rent</a></li>
+      <li><a href="listings.html?type=sale">For Sale</a></li>
+      <li><a href="index.html#how">How It Works</a></li>
+      <li><a href="login.html">Sign In</a></li>
+      <li><a href="post-property.html" class="nav-cta">List Property</a></li>
+    </ul>
+    <div class="nav-toggle" id="navToggle" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+
+  <!-- ══════════════════════════
+       BREADCRUMB
+  ══════════════════════════ -->
+  <div class="breadcrumb-bar">
+    <a href="index.html">Home</a>
+    <i class="bi bi-chevron-right"></i>
+    <a href="listings.html">Browse</a>
+    <i class="bi bi-chevron-right"></i>
+    <span>Luxury Ocean-View Apartment</span>
+  </div>
+
+
+  <!-- ══════════════════════════
+       PHOTO GALLERY
+  ══════════════════════════ -->
+  <div class="gallery">
+
+    <!-- Main photo -->
+    <div class="gallery-main" id="galleryMain">
+      <div class="gallery-main-img prop-img-gradient-1" id="mainImg">🏙️</div>
+      <span class="gallery-badge badge-rent">For Rent</span>
+      <button class="gallery-save" id="saveBtn" onclick="toggleSave()" title="Save property">
+        <i class="bi bi-heart"></i>
+      </button>
+      <button class="gallery-expand" onclick="openLightbox(0)" title="View all photos">
+        <i class="bi bi-arrows-fullscreen"></i> View All Photos
+      </button>
+    </div>
+
+    <!-- Thumbnails -->
+    <div class="gallery-thumbs">
+      <div class="gallery-thumb active" onclick="switchPhoto(0)">
+        <div class="thumb-img prop-img-gradient-1">🏙️</div>
+      </div>
+      <div class="gallery-thumb" onclick="switchPhoto(1)">
+        <div class="thumb-img prop-img-gradient-2">🛋️</div>
+      </div>
+      <div class="gallery-thumb" onclick="switchPhoto(2)">
+        <div class="thumb-img prop-img-gradient-3">🛏️</div>
+      </div>
+      <div class="gallery-thumb" onclick="switchPhoto(3)">
+        <div class="thumb-img prop-img-gradient-4">🍳</div>
+      </div>
+      <div class="gallery-thumb" onclick="switchPhoto(4)">
+        <div class="thumb-img prop-img-gradient-5">🚿</div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ══════════════════════════
+       LIGHTBOX
+  ══════════════════════════ -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button type="button" class="lightbox-close" onclick="closeLightbox()" title="Close photo gallery"><i class="bi bi-x-lg"></i></button>
+    <button class="lightbox-prev" onclick="lightboxNav(event, -1)" title="Previous photo"><i class="bi bi-chevron-left"></i></button>
+    <div class="lightbox-img" id="lightboxImg">🏙️</div>
+    <button type="button" class="lightbox-next" onclick="lightboxNav(event, 1)" title="Next photo"><i class="bi bi-chevron-right"></i></button>
+    <div class="lightbox-counter" id="lightboxCounter">1 / 5</div>
+  </div>
+
+
+  <!-- ══════════════════════════
+       PROPERTY DETAIL LAYOUT
+  ══════════════════════════ -->
+  <div class="detail-layout">
+
+    <!-- ── LEFT: Main Content ── -->
+    <div class="detail-main">
+
+      <!-- Title block -->
+      <div class="detail-title-block reveal">
+        <div class="detail-meta-top">
+          <p class="detail-location"><i class="bi bi-geo-alt-fill"></i> Masaki, Dar es Salaam</p>
+          <div class="detail-share">
+            <button class="share-btn" title="Share on WhatsApp"><i class="bi bi-whatsapp"></i></button>
+            <button class="share-btn" title="Copy link"><i class="bi bi-link-45deg"></i></button>
+          </div>
+        </div>
+        <h1 class="detail-title">Luxury Ocean-View Apartment</h1>
+        <div class="detail-tags">
+          <span class="detail-tag tag-type">Apartment</span>
+          <span class="detail-tag tag-status">Available</span>
+          <span class="detail-tag tag-verified"><i class="bi bi-patch-check-fill"></i> Verified</span>
+        </div>
+      </div>
+
+      <!-- Quick specs bar -->
+      <div class="specs-bar reveal">
+        <div class="spec-item">
+          <i class="bi bi-door-open"></i>
+          <div>
+            <span class="spec-val">3</span>
+            <span class="spec-label">Bedrooms</span>
+          </div>
+        </div>
+        <div class="spec-divider"></div>
+        <div class="spec-item">
+          <i class="bi bi-droplet"></i>
+          <div>
+            <span class="spec-val">2</span>
+            <span class="spec-label">Bathrooms</span>
+          </div>
+        </div>
+        <div class="spec-divider"></div>
+        <div class="spec-item">
+          <i class="bi bi-aspect-ratio"></i>
+          <div>
+            <span class="spec-val">120</span>
+            <span class="spec-label">m² Area</span>
+          </div>
+        </div>
+        <div class="spec-divider"></div>
+        <div class="spec-item">
+          <i class="bi bi-building"></i>
+          <div>
+            <span class="spec-val">8th</span>
+            <span class="spec-label">Floor</span>
+          </div>
+        </div>
+        <div class="spec-divider"></div>
+        <div class="spec-item">
+          <i class="bi bi-car-front"></i>
+          <div>
+            <span class="spec-val">2</span>
+            <span class="spec-label">Parking</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="detail-section reveal">
+        <h2 class="detail-section-title">About This Property</h2>
+        <div class="detail-description" id="descriptionText">
+          <p>This stunning ocean-view apartment sits on the 8th floor of one of Masaki's most prestigious residential buildings, offering uninterrupted panoramic views of the Indian Ocean. Designed with a contemporary open-plan layout, the apartment features floor-to-ceiling windows that flood every room with natural light.</p>
+          <p>The fully-fitted kitchen comes equipped with modern appliances and generous storage. The master bedroom includes a walk-in wardrobe and an en-suite bathroom with premium fixtures. Two additional bedrooms are spacious and well-ventilated, ideal for family or a home office setup.</p>
+          <p class="desc-more" id="descMore" style="display:none;">The building offers 24-hour security, a rooftop swimming pool, a gym, and two dedicated parking bays. Located minutes from Masaki's top restaurants, supermarkets, and the diplomatic quarter, this apartment represents the finest urban living Tanzania has to offer. Water and electricity are reliable with backup generator support.</p>
+        </div>
+        <button class="read-more-btn" id="readMoreBtn" onclick="toggleDescription()">
+          Read More <i class="bi bi-chevron-down"></i>
+        </button>
+      </div>
+
+      <!-- Amenities -->
+      <div class="detail-section reveal">
+        <h2 class="detail-section-title">Amenities & Features</h2>
+        <div class="amenities-grid">
+          <div class="amenity-item"><i class="bi bi-wifi"></i> High-Speed WiFi</div>
+          <div class="amenity-item"><i class="bi bi-snow"></i> Air Conditioning</div>
+          <div class="amenity-item"><i class="bi bi-shield-check"></i> 24/7 Security</div>
+          <div class="amenity-item"><i class="bi bi-droplet-fill"></i> Swimming Pool</div>
+          <div class="amenity-item"><i class="bi bi-bicycle"></i> Gym & Fitness</div>
+          <div class="amenity-item"><i class="bi bi-car-front-fill"></i> 2 Parking Bays</div>
+          <div class="amenity-item"><i class="bi bi-lightning-charge"></i> Backup Generator</div>
+          <div class="amenity-item"><i class="bi bi-water"></i> Water Storage</div>
+          <div class="amenity-item"><i class="bi bi-tv"></i> DSTV Ready</div>
+          <div class="amenity-item"><i class="bi bi-door-closed"></i> Intercom System</div>
+          <div class="amenity-item"><i class="bi bi-trees"></i> Rooftop Garden</div>
+          <div class="amenity-item"><i class="bi bi-bag-check"></i> Concierge Service</div>
+        </div>
+      </div>
+
+      <!-- Property Details Table -->
+      <div class="detail-section reveal">
+        <h2 class="detail-section-title">Property Details</h2>
+        <div class="details-table">
+          <div class="details-row">
+            <span class="details-key">Property Type</span>
+            <span class="details-val">Apartment</span>
+          </div>
+          <div class="details-row">
+            <span class="details-key">Listing Type</span>
+            <span class="details-val">For Rent</span>
+          </div>
+          <div class="details-row">
+            <span class="details-key">City</span>
+            <span class="details-val">Dar es Salaam</span>
+          </div>
+          <div class="details-row">
+            <span class="details-key">District</span>
+            <span class="details-val">Masaki</span>
+          </div>
+          <div class="details-row">
+            <span class="details-key">Floor</span>
+            <span class="details-val">8th of 12</span>
+          </div>
+          <div class="details-row">
+            <span class="details-key">Furnishing</span>
+            <span class="details-val">Fully Furnished</span>
+          </div>
+          <div class="details-row">
+            <span class="details-key">Year Built</span>
+            <span class="details-val">2021</span>
+          </div>
+          <div class="details-row">
+            <span class="details-key">Total Area</span>
+            <span class="details-val">120 m²</span>
+          </div>
+          <div class="details-row">
+            <span class="details-key">Listed On</span>
+            <span class="details-val">12 January 2025</span>
+          </div>
+          <div class="details-row">
+            <span class="details-key">Status</span>
+            <span class="details-val status-available">Available</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map -->
+      <div class="detail-section reveal">
+        <h2 class="detail-section-title">Location & Map</h2>
+        <div class="map-placeholder">
+          <div class="map-inner">
+            <i class="bi bi-map"></i>
+            <p>Masaki Peninsula, Dar es Salaam</p>
+            <span>Map loads when backend is connected</span>
+          </div>
+        </div>
+        <div class="map-nearby">
+          <div class="nearby-item"><i class="bi bi-shop"></i> Shoprite Masaki — 0.4 km</div>
+          <div class="nearby-item"><i class="bi bi-hospital"></i> Aga Khan Hospital — 2.1 km</div>
+          <div class="nearby-item"><i class="bi bi-mortarboard"></i> International School — 1.3 km</div>
+          <div class="nearby-item"><i class="bi bi-airplane"></i> Julius Nyerere Airport — 14 km</div>
+        </div>
+      </div>
+
+    </div>
+    <!-- end detail-main -->
+
+
+    <!-- ── RIGHT: Sidebar ── -->
+    <div class="detail-sidebar">
+
+      <!-- Price Card -->
+      <div class="sidebar-card price-card reveal">
+        <div class="price-main">
+          <span class="price-amount">TZS 3,200,000</span>
+          <span class="price-period">/ month</span>
+        </div>
+        <p class="price-note">Excluding utilities. Minimum lease 6 months.</p>
+
+        <div class="price-breakdown">
+          <div class="price-row">
+            <span>Monthly Rent</span>
+            <span>TZS 3,200,000</span>
+          </div>
+          <div class="price-row">
+            <span>Security Deposit</span>
+            <span>TZS 6,400,000</span>
+          </div>
+          <div class="price-row">
+            <span>Agency Fee</span>
+            <span>TZS 0</span>
+          </div>
+        </div>
+
+        <!-- WhatsApp CTA -->
+        <a href="https://wa.me/255700000000?text=Hello%2C%20I%20am%20interested%20in%20the%20Luxury%20Ocean-View%20Apartment%20in%20Masaki%20listed%20on%20NyumbaHub."
+           class="whatsapp-btn" target="_blank" rel="noopener noreferrer">
+          <i class="bi bi-whatsapp"></i> Contact on WhatsApp
+        </a>
+
+        <a href="tel:+255700000000" class="call-btn">
+          <i class="bi bi-telephone"></i> Call Landlord
+        </a>
+      </div>
+
+      <!-- Landlord Card -->
+      <div class="sidebar-card agent-card reveal">
+        <p class="agent-card-label">Listed By</p>
+        <div class="agent-info">
+          <div class="agent-avatar">👨🏿</div>
+          <div>
+            <p class="agent-name">James Mollel</p>
+            <p class="agent-role">Verified Landlord</p>
+          </div>
+          <span class="agent-verified"><i class="bi bi-patch-check-fill"></i></span>
+        </div>
+        <div class="agent-stats">
+          <div class="agent-stat">
+            <span class="agent-stat-val">12</span>
+            <span class="agent-stat-label">Listings</span>
+          </div>
+          <div class="agent-stat">
+            <span class="agent-stat-val">4.8★</span>
+            <span class="agent-stat-label">Rating</span>
+          </div>
+          <div class="agent-stat">
+            <span class="agent-stat-val">3 yrs</span>
+            <span class="agent-stat-label">On NyumbaHub</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Report -->
+      <div class="sidebar-card report-card reveal">
+        <button class="report-btn"><i class="bi bi-flag"></i> Report This Listing</button>
+      </div>
+
+    </div>
+    <!-- end detail-sidebar -->
+
+  </div>
+  <!-- end detail-layout -->
+
+
+  <!-- ══════════════════════════
+       SIMILAR PROPERTIES
+  ══════════════════════════ -->
+  <section class="similar-section">
+    <div class="section-header reveal">
+      <div>
+        <p class="section-eyebrow">You Might Also Like</p>
+        <h2 class="section-title-text">Similar <em>Properties</em></h2>
+      </div>
+      <a href="listings.html" class="view-all">View All <i class="bi bi-arrow-right"></i></a>
+    </div>
+
+    <div class="similar-grid">
+
+      <a href="property.html" class="listing-card reveal">
+        <div class="listing-img-wrap">
+          <div class="listing-img prop-img-gradient-2">🏡</div>
+          <span class="listing-badge badge-rent">For Rent</span>
+        </div>
+        <div class="listing-body">
+          <p class="listing-location"><i class="bi bi-geo-alt-fill"></i> Oyster Bay, Dar es Salaam</p>
+          <h3 class="listing-title">Spacious 3-Bed Penthouse</h3>
+          <div class="listing-specs">
+            <span><i class="bi bi-door-open"></i> 3 Beds</span>
+            <span><i class="bi bi-droplet"></i> 2 Baths</span>
+            <span><i class="bi bi-aspect-ratio"></i> 140 m²</span>
+          </div>
+          <div class="listing-footer">
+            <div class="listing-price">TZS 2.8M <small>/ mo</small></div>
+            <span class="listing-tag">Apartment</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="property.html" class="listing-card reveal reveal-delay-1">
+        <div class="listing-img-wrap">
+          <div class="listing-img prop-img-gradient-4">🏢</div>
+          <span class="listing-badge badge-rent">For Rent</span>
+        </div>
+        <div class="listing-body">
+          <p class="listing-location"><i class="bi bi-geo-alt-fill"></i> Upanga, Dar es Salaam</p>
+          <h3 class="listing-title">Modern 2-Bed Apartment</h3>
+          <div class="listing-specs">
+            <span><i class="bi bi-door-open"></i> 2 Beds</span>
+            <span><i class="bi bi-droplet"></i> 2 Baths</span>
+            <span><i class="bi bi-aspect-ratio"></i> 95 m²</span>
+          </div>
+          <div class="listing-footer">
+            <div class="listing-price">TZS 1.9M <small>/ mo</small></div>
+            <span class="listing-tag">Apartment</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="property.html" class="listing-card reveal reveal-delay-2">
+        <div class="listing-img-wrap">
+          <div class="listing-img prop-img-gradient-5">🏠</div>
+          <span class="listing-badge badge-rent">For Rent</span>
+        </div>
+        <div class="listing-body">
+          <p class="listing-location"><i class="bi bi-geo-alt-fill"></i> Msasani, Dar es Salaam</p>
+          <h3 class="listing-title">Executive Sea-Breeze Flat</h3>
+          <div class="listing-specs">
+            <span><i class="bi bi-door-open"></i> 3 Beds</span>
+            <span><i class="bi bi-droplet"></i> 2 Baths</span>
+            <span><i class="bi bi-aspect-ratio"></i> 110 m²</span>
+          </div>
+          <div class="listing-footer">
+            <div class="listing-price">TZS 2.4M <small>/ mo</small></div>
+            <span class="listing-tag">Apartment</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+
+  <!-- ── External JS Libraries ── -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- ── Shared JS ── -->
+  <script src="js/main.js"></script>
+  <!-- ── Page JS ── -->
+  <script src="js/property.js"></script>
+
+</body>
+</html>

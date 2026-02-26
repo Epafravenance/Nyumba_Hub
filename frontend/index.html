@@ -1,11 +1,507 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NyumbaHub — Find Your Perfect Home in Tanzania</title>
+
+  <!-- ── External Libraries ── -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+
+  <!-- ── Our CSS ── -->
+  <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
-    
+
+  <!-- ══════════════════════════
+       NAVBAR
+  ══════════════════════════ -->
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">Nyumba<span>Hub</span></a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="listings.html">Browse</a></li>
+      <li><a href="listings.html?type=rent">For Rent</a></li>
+      <li><a href="listings.html?type=sale">For Sale</a></li>
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="login.html">Sign In</a></li>
+      <li><a href="post-property.html" class="nav-cta">List Property</a></li>
+    </ul>
+
+    <div class="nav-toggle" id="navToggle" onclick="toggleNav()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+
+  <!-- ══════════════════════════
+       HERO
+  ══════════════════════════ -->
+  <section id="hero">
+    <p class="hero-eyebrow">Tanzania's Premier Property Platform</p>
+
+    <h1 class="hero-title">
+      Find Your
+      <span class="line2">Perfect <em>Home</em></span>
+    </h1>
+
+    <p class="hero-sub">
+      Discover premium properties across Tanzania. From Dar es Salaam's skyline to Arusha's highlands — your next chapter starts here.
+    </p>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <div class="search-group">
+        <span class="search-label">Location</span>
+        <select class="search-select" title="Select a city">
+          <option value="">All Cities</option>
+          <option>Dar es Salaam</option>
+          <option>Arusha</option>
+          <option>Mwanza</option>
+          <option>Dodoma</option>
+          <option>Zanzibar</option>
+          <option>Moshi</option>
+          <option>Tanga</option>
+        </select>
+      </div>
+      <div class="search-group">
+        <span class="search-label">Type</span>
+        <select class="search-select" title="Select a property type">
+          <option value="">Any Type</option>
+          <option>Apartment</option>
+          <option>House</option>
+          <option>Villa</option>
+          <option>Office</option>
+          <option>Land</option>
+        </select>
+      </div>
+      <div class="search-group">
+        <span class="search-label">Listing</span>
+        <select class="search-select" title="Select rent or buy option">
+          <option value="">Rent or Buy</option>
+          <option>For Rent</option>
+          <option>For Sale</option>
+        </select>
+      </div>
+      <button class="search-btn" onclick="window.location='listings.html'">
+        <i class="bi bi-search me-2"></i> Search
+      </button>
+    </div>
+
+    <!-- Stats -->
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">1,200+</div>
+        <div class="stat-label">Active Listings</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">8</div>
+        <div class="stat-label">Cities</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3,400+</div>
+        <div class="stat-label">Happy Tenants</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">540+</div>
+        <div class="stat-label">Verified Agents</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════
+       CITIES STRIP
+  ══════════════════════════ -->
+  <div id="cities">
+    <span class="cities-label">Browse by City</span>
+    <a href="listings.html?city=dar" class="city-pill active">
+      <i class="bi bi-geo-alt"></i> Dar es Salaam
+      <span class="city-count">480</span>
+    </a>
+    <a href="listings.html?city=arusha" class="city-pill">
+      <i class="bi bi-geo-alt"></i> Arusha
+      <span class="city-count">210</span>
+    </a>
+    <a href="listings.html?city=zanzibar" class="city-pill">
+      <i class="bi bi-geo-alt"></i> Zanzibar
+      <span class="city-count">145</span>
+    </a>
+    <a href="listings.html?city=mwanza" class="city-pill">
+      <i class="bi bi-geo-alt"></i> Mwanza
+      <span class="city-count">98</span>
+    </a>
+    <a href="listings.html?city=dodoma" class="city-pill">
+      <i class="bi bi-geo-alt"></i> Dodoma
+      <span class="city-count">72</span>
+    </a>
+    <a href="listings.html?city=moshi" class="city-pill">
+      <i class="bi bi-geo-alt"></i> Moshi
+      <span class="city-count">67</span>
+    </a>
+    <a href="listings.html?city=tanga" class="city-pill">
+      <i class="bi bi-geo-alt"></i> Tanga
+      <span class="city-count">54</span>
+    </a>
+  </div>
+
+
+  <!-- ══════════════════════════
+       FEATURED PROPERTIES
+  ══════════════════════════ -->
+  <section id="properties">
+    <div class="section-header reveal">
+      <div>
+        <p class="section-eyebrow">Hand-Picked Listings</p>
+        <h2 class="section-title-text">Featured <em>Properties</em></h2>
+      </div>
+      <a href="listings.html" class="view-all">View All <i class="bi bi-arrow-right"></i></a>
+    </div>
+
+    <div class="properties-grid">
+
+      <!-- Card 1 — Large Featured -->
+      <a href="property.html" class="prop-card large reveal">
+        <div class="prop-img-wrap">
+          <div class="prop-img-placeholder prop-img-gradient-1">🏙️</div>
+          <span class="prop-badge badge-rent">For Rent</span>
+          <div class="prop-overlay"></div>
+          <div class="prop-info">
+            <p class="prop-location"><i class="bi bi-geo-alt-fill me-1"></i>Masaki, Dar es Salaam</p>
+            <h3 class="prop-name">Luxury Ocean-View Apartment</h3>
+            <div class="prop-meta">
+              <div class="prop-price">TZS 3.2M <small>/ month</small></div>
+              <div class="prop-features">
+                <span class="prop-feat"><i class="bi bi-door-open"></i> 3 bed</span>
+                <span class="prop-feat"><i class="bi bi-droplet"></i> 2 bath</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 2 -->
+      <a href="property.html" class="prop-card reveal reveal-delay-1">
+        <div class="prop-img-wrap">
+          <div class="prop-img-placeholder prop-img-gradient-2">🏡</div>
+          <span class="prop-badge badge-sale">For Sale</span>
+          <div class="prop-overlay"></div>
+          <div class="prop-info">
+            <p class="prop-location"><i class="bi bi-geo-alt-fill me-1"></i>Njiro, Arusha</p>
+            <h3 class="prop-name">Modern Family Villa</h3>
+            <div class="prop-meta">
+              <div class="prop-price">TZS 280M</div>
+              <div class="prop-features">
+                <span class="prop-feat"><i class="bi bi-door-open"></i> 4 bed</span>
+                <span class="prop-feat"><i class="bi bi-droplet"></i> 3 bath</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 3 -->
+      <a href="property.html" class="prop-card reveal reveal-delay-2">
+        <div class="prop-img-wrap">
+          <div class="prop-img-placeholder prop-img-gradient-3">🏖️</div>
+          <span class="prop-badge badge-rent">For Rent</span>
+          <div class="prop-overlay"></div>
+          <div class="prop-info">
+            <p class="prop-location"><i class="bi bi-geo-alt-fill me-1"></i>Stone Town, Zanzibar</p>
+            <h3 class="prop-name">Heritage Beachfront Villa</h3>
+            <div class="prop-meta">
+              <div class="prop-price">TZS 5.5M <small>/ month</small></div>
+              <div class="prop-features">
+                <span class="prop-feat"><i class="bi bi-door-open"></i> 5 bed</span>
+                <span class="prop-feat"><i class="bi bi-droplet"></i> 4 bath</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 4 -->
+      <a href="property.html" class="prop-card reveal reveal-delay-1">
+        <div class="prop-img-wrap">
+          <div class="prop-img-placeholder prop-img-gradient-4">🏢</div>
+          <span class="prop-badge badge-rent">For Rent</span>
+          <div class="prop-overlay"></div>
+          <div class="prop-info">
+            <p class="prop-location"><i class="bi bi-geo-alt-fill me-1"></i>Kariakoo, Dar es Salaam</p>
+            <h3 class="prop-name">Modern Studio Apartment</h3>
+            <div class="prop-meta">
+              <div class="prop-price">TZS 650K <small>/ month</small></div>
+              <div class="prop-features">
+                <span class="prop-feat"><i class="bi bi-door-open"></i> 1 bed</span>
+                <span class="prop-feat"><i class="bi bi-droplet"></i> 1 bath</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 5 -->
+      <a href="property.html" class="prop-card reveal reveal-delay-2">
+        <div class="prop-img-wrap">
+          <div class="prop-img-placeholder prop-img-gradient-5">🏠</div>
+          <span class="prop-badge badge-sale">For Sale</span>
+          <div class="prop-overlay"></div>
+          <div class="prop-info">
+            <p class="prop-location"><i class="bi bi-geo-alt-fill me-1"></i>Kijitonyama, Dar es Salaam</p>
+            <h3 class="prop-name">Executive Townhouse</h3>
+            <div class="prop-meta">
+              <div class="prop-price">TZS 195M</div>
+              <div class="prop-features">
+                <span class="prop-feat"><i class="bi bi-door-open"></i> 3 bed</span>
+                <span class="prop-feat"><i class="bi bi-droplet"></i> 2 bath</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════
+       HOW IT WORKS
+  ══════════════════════════ -->
+  <section id="how">
+    <div class="section-header reveal section-header-no-margin">
+      <div>
+        <p class="section-eyebrow">Simple Process</p>
+        <h2 class="section-title-text">How It <em>Works</em></h2>
+      </div>
+    </div>
+
+    <div class="steps-grid steps-grid-margin">
+      <div class="step-item reveal">
+        <div class="step-num">01</div>
+        <div class="step-icon"><i class="bi bi-search"></i></div>
+        <h3 class="step-title">Search & Filter</h3>
+        <p class="step-desc">Browse thousands of verified listings. Filter by city, price range, property type, and number of rooms.</p>
+      </div>
+      <div class="step-item reveal reveal-delay-1">
+        <div class="step-num">02</div>
+        <div class="step-icon"><i class="bi bi-eye"></i></div>
+        <h3 class="step-title">View Details</h3>
+        <p class="step-desc">Explore full photo galleries, floor plans, amenities, neighborhood info and precise map location.</p>
+      </div>
+      <div class="step-item reveal reveal-delay-2">
+        <div class="step-num">03</div>
+        <div class="step-icon"><i class="bi bi-whatsapp"></i></div>
+        <h3 class="step-title">Contact Directly</h3>
+        <p class="step-desc">Reach landlords and agents instantly via WhatsApp or phone. No middlemen, no hidden fees.</p>
+      </div>
+      <div class="step-item reveal reveal-delay-3">
+        <div class="step-num">04</div>
+        <div class="step-icon"><i class="bi bi-house-check"></i></div>
+        <h3 class="step-title">Move In</h3>
+        <p class="step-desc">Agree on terms, sign your agreement, and move into your new home. It really is that simple.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════
+       CATEGORIES
+  ══════════════════════════ -->
+  <section id="categories" class="categories-no-padding">
+    <div class="section-header reveal">
+      <div>
+        <p class="section-eyebrow">Browse by Type</p>
+        <h2 class="section-title-text">Property <em>Categories</em></h2>
+      </div>
+      <a href="listings.html" class="view-all">All Categories <i class="bi bi-arrow-right"></i></a>
+    </div>
+
+    <div class="categories-grid">
+
+      <a href="listings.html?type=apartment" class="cat-card large reveal">
+        <div class="cat-bg cat-bg-gradient-1"></div>
+        <div class="cat-overlay"></div>
+        <div class="cat-content">
+          <span class="cat-icon">🏢</span>
+          <h3 class="cat-name">Apartments</h3>
+          <p class="cat-count">386 listings available</p>
+        </div>
+      </a>
+
+      <a href="listings.html?type=house" class="cat-card reveal reveal-delay-1">
+        <div class="cat-bg cat-bg-gradient-2"></div>
+        <div class="cat-overlay"></div>
+        <div class="cat-content">
+          <span class="cat-icon">🏡</span>
+          <h3 class="cat-name">Houses</h3>
+          <p class="cat-count">214 listings available</p>
+        </div>
+      </a>
+
+      <a href="listings.html?type=villa" class="cat-card reveal reveal-delay-2">
+        <div class="cat-bg cat-bg-gradient-3"></div>
+        <div class="cat-overlay"></div>
+        <div class="cat-content">
+          <span class="cat-icon">🏰</span>
+          <h3 class="cat-name">Villas</h3>
+          <p class="cat-count">89 listings available</p>
+        </div>
+      </a>
+
+      <a href="listings.html?type=office" class="cat-card reveal reveal-delay-1">
+        <div class="cat-bg cat-bg-gradient-4"></div>
+        <div class="cat-overlay"></div>
+        <div class="cat-content">
+          <span class="cat-icon">🏬</span>
+          <h3 class="cat-name">Offices</h3>
+          <p class="cat-count">127 listings available</p>
+        </div>
+      </a>
+
+      <a href="listings.html?type=land" class="cat-card reveal reveal-delay-2">
+        <div class="cat-bg cat-bg-gradient-5"></div>
+        <div class="cat-overlay"></div>
+        <div class="cat-content">
+          <span class="cat-icon">🌿</span>
+          <h3 class="cat-name">Land & Plots</h3>
+          <p class="cat-count">203 listings available</p>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════
+       TESTIMONIALS
+  ══════════════════════════ -->
+  <section id="testimonials" class="testimonials-no-padding">
+    <div class="section-header reveal section-header-custom-padding">
+      <div>
+        <p class="section-eyebrow">What People Say</p>
+        <h2 class="section-title-text">Trusted by <em>Thousands</em></h2>
+      </div>
+    </div>
+
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">I found my apartment in Masaki within 3 days. The WhatsApp contact feature made it so easy to speak directly with the landlord. No agents, no stress.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">👩🏾</div>
+          <div>
+            <div class="testi-name">Amina Salehe</div>
+            <div class="testi-role">Tenant · Dar es Salaam</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-delay-1">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">As a landlord with 4 properties, NyumbaHub has completely changed how I find tenants. My listing gets seen by hundreds of serious people every week.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">👨🏿</div>
+          <div>
+            <div class="testi-name">Hassan Mwamba</div>
+            <div class="testi-role">Landlord · Arusha</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-delay-2">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">We relocated from Nairobi to Dar and found our dream family home here before we even landed. The photos and details were so accurate. Highly recommend.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">👩🏽</div>
+          <div>
+            <div class="testi-name">Grace Kimani</div>
+            <div class="testi-role">Buyer · Dar es Salaam</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════
+       CTA
+  ══════════════════════════ -->
+  <section id="cta">
+    <p class="cta-eyebrow reveal">Ready to Begin?</p>
+    <h2 class="cta-title reveal">List Your Property.<br><em>Reach Thousands.</em></h2>
+    <p class="cta-sub reveal">Join over 540 verified landlords and agents already using NyumbaHub to find quality tenants fast.</p>
+    <div class="cta-buttons reveal">
+      <a href="post-property.html" class="btn-gold">List a Property</a>
+      <a href="listings.html" class="btn-outline">Browse Listings</a>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════
+       FOOTER
+  ══════════════════════════ -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <a href="index.html" class="footer-logo">Nyumba<span>Hub</span></a>
+        <p class="footer-desc">Tanzania's premier real estate platform connecting landlords, agents and property seekers across the country.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn" title="Follow us on Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="social-btn" title="Follow us on Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="social-btn" title="Follow us on Twitter"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" class="social-btn" title="Contact us on WhatsApp"><i class="bi bi-whatsapp"></i></a>
+        </div>
+      </div>
+      <div>
+        <p class="footer-heading">Explore</p>
+        <ul class="footer-links">
+          <li><a href="listings.html">Browse Listings</a></li>
+          <li><a href="listings.html?type=rent">For Rent</a></li>
+          <li><a href="listings.html?type=sale">For Sale</a></li>
+          <li><a href="listings.html?type=land">Land & Plots</a></li>
+          <li><a href="listings.html?type=office">Commercial</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-heading">Cities</p>
+        <ul class="footer-links">
+          <li><a href="listings.html?city=dar">Dar es Salaam</a></li>
+          <li><a href="listings.html?city=arusha">Arusha</a></li>
+          <li><a href="listings.html?city=zanzibar">Zanzibar</a></li>
+          <li><a href="listings.html?city=mwanza">Mwanza</a></li>
+          <li><a href="listings.html?city=moshi">Moshi</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-heading">Company</p>
+        <ul class="footer-links">
+          <li><a href="#">About Us</a></li>
+          <li><a href="post-property.html">List Property</a></li>
+          <li><a href="#">Advertise</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Help Center</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 <span>NyumbaHub</span>. Built with ❤️ for Tanzania.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ── External JS Libraries ── -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- ── Our JS ── -->
+  <script src="js/main.js"></script>
+
 </body>
 </html>

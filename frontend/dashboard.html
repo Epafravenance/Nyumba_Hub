@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — NyumbaHub</title>
+
+  <!-- ── External Libraries ── -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+
+  <!-- ── Shared CSS ── -->
+  <link rel="stylesheet" href="css/style.css"/>
+  <!-- ── Page CSS ── -->
+  <link rel="stylesheet" href="css/dashboard.css"/>
+</head>
+<body>
+
+  <!-- ══════════════════════════
+       SIDEBAR
+  ══════════════════════════ -->
+  <aside class="sidebar" id="sidebar">
+
+    <!-- Logo -->
+    <a href="index.html" class="sidebar-logo">Nyumba<span>Hub</span></a>
+
+    <!-- User profile snippet -->
+    <div class="sidebar-profile">
+      <div class="sidebar-avatar">👨🏿</div>
+      <div class="sidebar-user-info">
+        <p class="sidebar-user-name">James Mollel</p>
+        <p class="sidebar-user-role"><i class="bi bi-patch-check-fill"></i> Verified Landlord</p>
+      </div>
+    </div>
+
+    <!-- Nav links -->
+    <nav class="sidebar-nav">
+      <p class="sidebar-nav-label">Main Menu</p>
+
+      <a href="#" class="sidebar-link active" data-section="overview">
+        <i class="bi bi-grid-1x2"></i> Overview
+      </a>
+      <a href="#" class="sidebar-link" data-section="listings">
+        <i class="bi bi-houses"></i> My Listings
+        <span class="sidebar-badge">4</span>
+      </a>
+      <a href="post-property.html" class="sidebar-link">
+        <i class="bi bi-plus-circle"></i> Post Property
+      </a>
+      <a href="#" class="sidebar-link" data-section="inquiries">
+        <i class="bi bi-chat-dots"></i> Inquiries
+        <span class="sidebar-badge sidebar-badge-gold">3</span>
+      </a>
+
+      <p class="sidebar-nav-label">Account</p>
+
+      <a href="#" class="sidebar-link" data-section="profile">
+        <i class="bi bi-person-circle"></i> My Profile
+      </a>
+      <a href="#" class="sidebar-link" data-section="settings">
+        <i class="bi bi-gear"></i> Settings
+      </a>
+      <a href="index.html" class="sidebar-link">
+        <i class="bi bi-house"></i> Back to Site
+      </a>
+    </nav>
+
+    <!-- Logout -->
+    <button class="sidebar-logout" onclick="handleLogout()">
+      <i class="bi bi-box-arrow-left"></i> Sign Out
+    </button>
+
+  </aside>
+
+
+  <!-- ══════════════════════════
+       MAIN CONTENT AREA
+  ══════════════════════════ -->
+  <div class="dash-main">
+
+    <!-- ── Top Bar ── -->
+    <header class="dash-topbar">
+      <div class="topbar-left">
+        <button class="sidebar-toggle" onclick="toggleSidebar()">
+          <i class="bi bi-list"></i>
+        </button>
+        <div class="topbar-breadcrumb">
+          <span>Dashboard</span>
+          <i class="bi bi-chevron-right"></i>
+          <span id="topbarSection">Overview</span>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <a href="post-property.html" class="topbar-post-btn">
+          <i class="bi bi-plus-lg"></i> Post Property
+        </a>
+        <button class="topbar-icon-btn" title="Notifications">
+          <i class="bi bi-bell"></i>
+          <span class="notif-dot"></span>
+        </button>
+        <div class="topbar-avatar">👨🏿</div>
+      </div>
+    </header>
+
+
+    <!-- ══════════════════════════
+         SECTION: OVERVIEW
+    ══════════════════════════ -->
+    <section class="dash-section active" id="section-overview">
+
+      <div class="dash-section-header">
+        <div>
+          <p class="section-eyebrow">Good morning</p>
+          <h1 class="dash-section-title">Welcome back, <em>James</em></h1>
+        </div>
+        <a href="post-property.html" class="btn-gold">
+          <i class="bi bi-plus-lg"></i> Post New Property
+        </a>
+      </div>
+
+      <!-- Stats Cards -->
+      <div class="stats-grid">
+        <div class="stat-card reveal">
+          <div class="stat-card-icon"><i class="bi bi-houses"></i></div>
+          <div class="stat-card-body">
+            <span class="stat-card-num">4</span>
+            <span class="stat-card-label">Active Listings</span>
+          </div>
+          <div class="stat-card-trend up"><i class="bi bi-arrow-up-right"></i> +1 this month</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-1">
+          <div class="stat-card-icon"><i class="bi bi-eye"></i></div>
+          <div class="stat-card-body">
+            <span class="stat-card-num">1,248</span>
+            <span class="stat-card-label">Total Views</span>
+          </div>
+          <div class="stat-card-trend up"><i class="bi bi-arrow-up-right"></i> +18% this week</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-2">
+          <div class="stat-card-icon"><i class="bi bi-chat-dots"></i></div>
+          <div class="stat-card-body">
+            <span class="stat-card-num">3</span>
+            <span class="stat-card-label">New Inquiries</span>
+          </div>
+          <div class="stat-card-trend up"><i class="bi bi-arrow-up-right"></i> 3 unread</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-3">
+          <div class="stat-card-icon"><i class="bi bi-house-check"></i></div>
+          <div class="stat-card-body">
+            <span class="stat-card-num">2</span>
+            <span class="stat-card-label">Taken / Rented</span>
+          </div>
+          <div class="stat-card-trend neutral"><i class="bi bi-dash"></i> No change</div>
+        </div>
+      </div>
+
+      <!-- Quick Actions + Recent Inquiries row -->
+      <div class="dash-two-col">
+
+        <!-- Recent Inquiries -->
+        <div class="dash-card reveal">
+          <div class="dash-card-header">
+            <h3 class="dash-card-title">Recent Inquiries</h3>
+            <button class="dash-card-link" onclick="goToSection('inquiries')">View All</button>
+          </div>
+
+          <div class="inquiry-list">
+
+            <div class="inquiry-item unread">
+              <div class="inquiry-avatar">👩🏾</div>
+              <div class="inquiry-body">
+                <p class="inquiry-name">Amina Salehe</p>
+                <p class="inquiry-msg">Hi, is the Masaki apartment still available? I'd like to arrange a viewing…</p>
+                <p class="inquiry-time"><i class="bi bi-clock"></i> 2 hours ago</p>
+              </div>
+              <a href="https://wa.me/255700000001" class="inquiry-whatsapp" target="_blank" title="Reply on WhatsApp">
+                <i class="bi bi-whatsapp"></i>
+              </a>
+            </div>
+
+            <div class="inquiry-item unread">
+              <div class="inquiry-avatar">👨🏽</div>
+              <div class="inquiry-body">
+                <p class="inquiry-name">David Kimaro</p>
+                <p class="inquiry-msg">What is the minimum lease period for the Kijitonyama property?</p>
+                <p class="inquiry-time"><i class="bi bi-clock"></i> 5 hours ago</p>
+              </div>
+              <a href="https://wa.me/255700000002" class="inquiry-whatsapp" target="_blank" title="Reply on WhatsApp">
+                <i class="bi bi-whatsapp"></i>
+              </a>
+            </div>
+
+            <div class="inquiry-item unread">
+              <div class="inquiry-avatar">👩🏽</div>
+              <div class="inquiry-body">
+                <p class="inquiry-name">Grace Kimani</p>
+                <p class="inquiry-msg">Does the villa include a parking space? We have two cars.</p>
+                <p class="inquiry-time"><i class="bi bi-clock"></i> Yesterday</p>
+              </div>
+              <a href="https://wa.me/255700000003" class="inquiry-whatsapp" target="_blank" title="Reply on WhatsApp">
+                <i class="bi bi-whatsapp"></i>
+              </a>
+            </div>
+
+            <div class="inquiry-item">
+              <div class="inquiry-avatar">👨🏿</div>
+              <div class="inquiry-body">
+                <p class="inquiry-name">Hassan Mwamba</p>
+                <p class="inquiry-msg">Can we negotiate the price for a 12-month contract?</p>
+                <p class="inquiry-time"><i class="bi bi-clock"></i> 2 days ago</p>
+              </div>
+              <a href="https://wa.me/255700000004" class="inquiry-whatsapp" target="_blank" title="Reply on WhatsApp">
+                <i class="bi bi-whatsapp"></i>
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="dash-card reveal reveal-delay-1">
+          <div class="dash-card-header">
+            <h3 class="dash-card-title">Quick Actions</h3>
+          </div>
+          <div class="quick-actions">
+            <a href="post-property.html" class="quick-action-btn">
+              <i class="bi bi-plus-circle-fill"></i>
+              <span>Post New Property</span>
+            </a>
+            <button class="quick-action-btn" onclick="goToSection('listings')">
+              <i class="bi bi-pencil-square"></i>
+              <span>Edit Listings</span>
+            </button>
+            <button class="quick-action-btn" onclick="goToSection('inquiries')">
+              <i class="bi bi-chat-dots-fill"></i>
+              <span>View Inquiries</span>
+            </button>
+            <button class="quick-action-btn" onclick="goToSection('profile')">
+              <i class="bi bi-person-fill-gear"></i>
+              <span>Edit Profile</span>
+            </button>
+          </div>
+
+          <!-- Listing performance mini list -->
+          <div class="dash-card-header" style="margin-top: 28px;">
+            <h3 class="dash-card-title">Top Performing</h3>
+          </div>
+          <div class="perf-list">
+            <div class="perf-item">
+              <div class="perf-img prop-img-gradient-1">🏙️</div>
+              <div class="perf-body">
+                <p class="perf-title">Luxury Ocean-View Apt</p>
+                <p class="perf-location">Masaki, Dar es Salaam</p>
+              </div>
+              <div class="perf-views"><i class="bi bi-eye"></i> 548</div>
+            </div>
+            <div class="perf-item">
+              <div class="perf-img prop-img-gradient-3">🏖️</div>
+              <div class="perf-body">
+                <p class="perf-title">Beachfront Villa</p>
+                <p class="perf-location">Stone Town, Zanzibar</p>
+              </div>
+              <div class="perf-views"><i class="bi bi-eye"></i> 312</div>
+            </div>
+            <div class="perf-item">
+              <div class="perf-img prop-img-gradient-5">🏠</div>
+              <div class="perf-body">
+                <p class="perf-title">Executive Townhouse</p>
+                <p class="perf-location">Kijitonyama, Dar</p>
+              </div>
+              <div class="perf-views"><i class="bi bi-eye"></i> 241</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════
+         SECTION: MY LISTINGS
+    ══════════════════════════ -->
+    <section class="dash-section" id="section-listings">
+
+      <div class="dash-section-header">
+        <div>
+          <p class="section-eyebrow">Manage Properties</p>
+          <h1 class="dash-section-title">My <em>Listings</em></h1>
+        </div>
+        <a href="post-property.html" class="btn-gold">
+          <i class="bi bi-plus-lg"></i> Add New
+        </a>
+      </div>
+
+      <!-- Filter tabs -->
+      <div class="listing-filter-tabs">
+        <button class="lf-tab active" onclick="filterListings('all', this)">All <span>4</span></button>
+        <button class="lf-tab" onclick="filterListings('available', this)">Available <span>2</span></button>
+        <button class="lf-tab" onclick="filterListings('taken', this)">Taken <span>2</span></button>
+        <button class="lf-tab" onclick="filterListings('pending', this)">Pending Approval <span>0</span></button>
+      </div>
+
+      <!-- Listings table -->
+      <div class="dash-card">
+        <div class="listings-table-wrap">
+          <table class="listings-table">
+            <thead>
+              <tr>
+                <th>Property</th>
+                <th>Type</th>
+                <th>Price</th>
+                <th>Views</th>
+                <th>Status</th>
+                <th>Listed</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="listingsTableBody">
+
+              <tr class="listing-row" data-status="available">
+                <td>
+                  <div class="table-prop">
+                    <div class="table-prop-img prop-img-gradient-1">🏙️</div>
+                    <div>
+                      <p class="table-prop-name">Luxury Ocean-View Apartment</p>
+                      <p class="table-prop-location"><i class="bi bi-geo-alt-fill"></i> Masaki, Dar es Salaam</p>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="table-tag">Apartment</span></td>
+                <td class="table-price">TZS 3.2M<small>/mo</small></td>
+                <td><span class="table-views"><i class="bi bi-eye"></i> 548</span></td>
+                <td><span class="status-pill status-available">Available</span></td>
+                <td class="table-date">Jan 12, 2025</td>
+                <td>
+                  <div class="table-actions">
+                    <a href="property.html" class="tbl-btn" title="View"><i class="bi bi-eye"></i></a>
+                    <a href="post-property.html" class="tbl-btn" title="Edit"><i class="bi bi-pencil"></i></a>
+                    <button class="tbl-btn" title="Mark as Taken" onclick="markTaken(this, 'available')"><i class="bi bi-house-check"></i></button>
+                    <button class="tbl-btn tbl-btn-danger" title="Delete" onclick="confirmDelete(this)"><i class="bi bi-trash3"></i></button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr class="listing-row" data-status="available">
+                <td>
+                  <div class="table-prop">
+                    <div class="table-prop-img prop-img-gradient-3">🏖️</div>
+                    <div>
+                      <p class="table-prop-name">Heritage Beachfront Villa</p>
+                      <p class="table-prop-location"><i class="bi bi-geo-alt-fill"></i> Stone Town, Zanzibar</p>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="table-tag">Villa</span></td>
+                <td class="table-price">TZS 5.5M<small>/mo</small></td>
+                <td><span class="table-views"><i class="bi bi-eye"></i> 312</span></td>
+                <td><span class="status-pill status-available">Available</span></td>
+                <td class="table-date">Dec 5, 2024</td>
+                <td>
+                  <div class="table-actions">
+                    <a href="property.html" class="tbl-btn" title="View"><i class="bi bi-eye"></i></a>
+                    <a href="post-property.html" class="tbl-btn" title="Edit"><i class="bi bi-pencil"></i></a>
+                    <button class="tbl-btn" title="Mark as Taken" onclick="markTaken(this, 'available')"><i class="bi bi-house-check"></i></button>
+                    <button class="tbl-btn tbl-btn-danger" title="Delete" onclick="confirmDelete(this)"><i class="bi bi-trash3"></i></button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr class="listing-row" data-status="taken">
+                <td>
+                  <div class="table-prop">
+                    <div class="table-prop-img prop-img-gradient-5">🏠</div>
+                    <div>
+                      <p class="table-prop-name">Executive Townhouse</p>
+                      <p class="table-prop-location"><i class="bi bi-geo-alt-fill"></i> Kijitonyama, Dar es Salaam</p>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="table-tag">House</span></td>
+                <td class="table-price">TZS 195M</td>
+                <td><span class="table-views"><i class="bi bi-eye"></i> 241</span></td>
+                <td><span class="status-pill status-taken">Taken</span></td>
+                <td class="table-date">Nov 20, 2024</td>
+                <td>
+                  <div class="table-actions">
+                    <a href="property.html" class="tbl-btn" title="View"><i class="bi bi-eye"></i></a>
+                    <a href="post-property.html" class="tbl-btn" title="Edit"><i class="bi bi-pencil"></i></a>
+                    <button class="tbl-btn" title="Mark as Available" onclick="markTaken(this, 'taken')"><i class="bi bi-arrow-repeat"></i></button>
+                    <button class="tbl-btn tbl-btn-danger" title="Delete" onclick="confirmDelete(this)"><i class="bi bi-trash3"></i></button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr class="listing-row" data-status="taken">
+                <td>
+                  <div class="table-prop">
+                    <div class="table-prop-img prop-img-gradient-2">🏡</div>
+                    <div>
+                      <p class="table-prop-name">Modern Family Villa</p>
+                      <p class="table-prop-location"><i class="bi bi-geo-alt-fill"></i> Njiro, Arusha</p>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="table-tag">Villa</span></td>
+                <td class="table-price">TZS 280M</td>
+                <td><span class="table-views"><i class="bi bi-eye"></i> 147</span></td>
+                <td><span class="status-pill status-taken">Taken</span></td>
+                <td class="table-date">Oct 8, 2024</td>
+                <td>
+                  <div class="table-actions">
+                    <a href="property.html" class="tbl-btn" title="View"><i class="bi bi-eye"></i></a>
+                    <a href="post-property.html" class="tbl-btn" title="Edit"><i class="bi bi-pencil"></i></a>
+                    <button class="tbl-btn" title="Mark as Available" onclick="markTaken(this, 'taken')"><i class="bi bi-arrow-repeat"></i></button>
+                    <button class="tbl-btn tbl-btn-danger" title="Delete" onclick="confirmDelete(this)"><i class="bi bi-trash3"></i></button>
+                  </div>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════
+         SECTION: INQUIRIES
+    ══════════════════════════ -->
+    <section class="dash-section" id="section-inquiries">
+
+      <div class="dash-section-header">
+        <div>
+          <p class="section-eyebrow">Messages from Tenants</p>
+          <h1 class="dash-section-title">Inquiries <em>(3 New)</em></h1>
+        </div>
+      </div>
+
+      <div class="dash-card">
+        <div class="inquiry-full-list">
+
+          <div class="inquiry-full-item unread">
+            <div class="inquiry-full-left">
+              <div class="inquiry-avatar lg">👩🏾</div>
+            </div>
+            <div class="inquiry-full-body">
+              <div class="inquiry-full-top">
+                <p class="inquiry-name">Amina Salehe</p>
+                <span class="inq-badge inq-new">New</span>
+                <span class="inquiry-time"><i class="bi bi-clock"></i> 2 hours ago</span>
+              </div>
+              <p class="inq-property"><i class="bi bi-house"></i> Re: Luxury Ocean-View Apartment — Masaki</p>
+              <p class="inquiry-full-msg">Hi, is the Masaki apartment still available? I'd like to arrange a viewing this weekend if possible. I'm looking for a 12-month lease. Please let me know your availability.</p>
+              <div class="inquiry-full-actions">
+                <a href="https://wa.me/255700000001?text=Hello+Amina" class="inq-whatsapp-btn" target="_blank">
+                  <i class="bi bi-whatsapp"></i> Reply on WhatsApp
+                </a>
+                <a href="tel:+255700000001" class="inq-call-btn">
+                  <i class="bi bi-telephone"></i> Call
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="inquiry-full-item unread">
+            <div class="inquiry-full-left">
+              <div class="inquiry-avatar lg">👨🏽</div>
+            </div>
+            <div class="inquiry-full-body">
+              <div class="inquiry-full-top">
+                <p class="inquiry-name">David Kimaro</p>
+                <span class="inq-badge inq-new">New</span>
+                <span class="inquiry-time"><i class="bi bi-clock"></i> 5 hours ago</span>
+              </div>
+              <p class="inq-property"><i class="bi bi-house"></i> Re: Executive Townhouse — Kijitonyama</p>
+              <p class="inquiry-full-msg">What is the minimum lease period for the Kijitonyama property? Also, is the price negotiable for a long-term contract? We are a family of 4 looking to move by February.</p>
+              <div class="inquiry-full-actions">
+                <a href="https://wa.me/255700000002?text=Hello+David" class="inq-whatsapp-btn" target="_blank">
+                  <i class="bi bi-whatsapp"></i> Reply on WhatsApp
+                </a>
+                <a href="tel:+255700000002" class="inq-call-btn">
+                  <i class="bi bi-telephone"></i> Call
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="inquiry-full-item unread">
+            <div class="inquiry-full-left">
+              <div class="inquiry-avatar lg">👩🏽</div>
+            </div>
+            <div class="inquiry-full-body">
+              <div class="inquiry-full-top">
+                <p class="inquiry-name">Grace Kimani</p>
+                <span class="inq-badge inq-new">New</span>
+                <span class="inquiry-time"><i class="bi bi-clock"></i> Yesterday</span>
+              </div>
+              <p class="inq-property"><i class="bi bi-house"></i> Re: Heritage Beachfront Villa — Zanzibar</p>
+              <p class="inquiry-full-msg">Does the villa include a parking space? We have two cars and would need at least two bays. Also, is the beach access private or shared with neighbouring properties?</p>
+              <div class="inquiry-full-actions">
+                <a href="https://wa.me/255700000003?text=Hello+Grace" class="inq-whatsapp-btn" target="_blank">
+                  <i class="bi bi-whatsapp"></i> Reply on WhatsApp
+                </a>
+                <a href="tel:+255700000003" class="inq-call-btn">
+                  <i class="bi bi-telephone"></i> Call
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="inquiry-full-item">
+            <div class="inquiry-full-left">
+              <div class="inquiry-avatar lg">👨🏿</div>
+            </div>
+            <div class="inquiry-full-body">
+              <div class="inquiry-full-top">
+                <p class="inquiry-name">Hassan Mwamba</p>
+                <span class="inq-badge inq-read">Read</span>
+                <span class="inquiry-time"><i class="bi bi-clock"></i> 2 days ago</span>
+              </div>
+              <p class="inq-property"><i class="bi bi-house"></i> Re: Modern Family Villa — Arusha</p>
+              <p class="inquiry-full-msg">Can we negotiate the price for a 12-month contract? We're very interested in the Arusha villa but the asking price is slightly above our budget. Would you consider a 10% reduction?</p>
+              <div class="inquiry-full-actions">
+                <a href="https://wa.me/255700000004?text=Hello+Hassan" class="inq-whatsapp-btn" target="_blank">
+                  <i class="bi bi-whatsapp"></i> Reply on WhatsApp
+                </a>
+                <a href="tel:+255700000004" class="inq-call-btn">
+                  <i class="bi bi-telephone"></i> Call
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════
+         SECTION: PROFILE
+    ══════════════════════════ -->
+    <section class="dash-section" id="section-profile">
+
+      <div class="dash-section-header">
+        <div>
+          <p class="section-eyebrow">Your Account</p>
+          <h1 class="dash-section-title">My <em>Profile</em></h1>
+        </div>
+      </div>
+
+      <div class="profile-layout">
+
+        <!-- Profile card -->
+        <div class="dash-card profile-card">
+          <div class="profile-avatar-wrap">
+            <div class="profile-avatar">👨🏿</div>
+            <button class="profile-avatar-edit"><i class="bi bi-camera-fill"></i></button>
+          </div>
+          <h2 class="profile-name">James Mollel</h2>
+          <p class="profile-role"><i class="bi bi-patch-check-fill"></i> Verified Landlord</p>
+          <div class="profile-meta">
+            <span><i class="bi bi-geo-alt"></i> Dar es Salaam, TZ</span>
+            <span><i class="bi bi-calendar3"></i> Member since Jan 2022</span>
+          </div>
+          <div class="profile-stats">
+            <div class="profile-stat">
+              <span class="profile-stat-val">4</span>
+              <span class="profile-stat-label">Listings</span>
+            </div>
+            <div class="profile-stat">
+              <span class="profile-stat-val">4.8★</span>
+              <span class="profile-stat-label">Rating</span>
+            </div>
+            <div class="profile-stat">
+              <span class="profile-stat-val">12</span>
+              <span class="profile-stat-label">Reviews</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Edit form -->
+        <div class="dash-card profile-edit-card">
+          <h3 class="dash-card-title" style="margin-bottom:24px;">Edit Information</h3>
+
+          <div class="form-row-dash">
+            <div class="form-field-dash">
+              <label class="form-label-dash">First Name</label>
+              <input type="text" class="dash-input" value="James"/>
+            </div>
+            <div class="form-field-dash">
+              <label class="form-label-dash">Last Name</label>
+              <input type="text" class="dash-input" value="Mollel"/>
+            </div>
+          </div>
+          <div class="form-field-dash">
+            <label class="form-label-dash">Email Address</label>
+            <input type="email" class="dash-input" value="james.mollel@email.com"/>
+          </div>
+          <div class="form-field-dash">
+            <label class="form-label-dash">Phone Number</label>
+            <input type="tel" class="dash-input" value="+255 700 000 000"/>
+          </div>
+          <div class="form-field-dash">
+            <label class="form-label-dash">City</label>
+            <input type="text" class="dash-input" value="Dar es Salaam"/>
+          </div>
+          <div class="form-field-dash">
+            <label class="form-label-dash">Bio</label>
+            <textarea class="dash-input dash-textarea" rows="3">Experienced landlord with properties in Dar es Salaam, Zanzibar and Arusha.</textarea>
+          </div>
+          <button class="btn-gold" style="margin-top:8px;" onclick="saveProfile()">
+            <i class="bi bi-check2"></i> Save Changes
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════
+         SECTION: SETTINGS
+    ══════════════════════════ -->
+    <section class="dash-section" id="section-settings">
+
+      <div class="dash-section-header">
+        <div>
+          <p class="section-eyebrow">Preferences</p>
+          <h1 class="dash-section-title">Account <em>Settings</em></h1>
+        </div>
+      </div>
+
+      <div class="settings-grid">
+
+        <div class="dash-card">
+          <h3 class="dash-card-title">Notifications</h3>
+          <div class="settings-list">
+            <div class="settings-row">
+              <div>
+                <p class="settings-label">New Inquiry Alerts</p>
+                <p class="settings-desc">Get notified when someone contacts you about a listing</p>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked/>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="settings-row">
+              <div>
+                <p class="settings-label">WhatsApp Notifications</p>
+                <p class="settings-desc">Receive inquiry details directly on WhatsApp</p>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked/>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="settings-row">
+              <div>
+                <p class="settings-label">Email Digest</p>
+                <p class="settings-desc">Weekly summary of your listing performance</p>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox"/>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="dash-card">
+          <h3 class="dash-card-title">Security</h3>
+          <div class="settings-list">
+            <div class="form-field-dash">
+              <label class="form-label-dash">Current Password</label>
+              <input type="password" class="dash-input" placeholder="••••••••"/>
+            </div>
+            <div class="form-field-dash">
+              <label class="form-label-dash">New Password</label>
+              <input type="password" class="dash-input" placeholder="At least 8 characters"/>
+            </div>
+            <div class="form-field-dash">
+              <label class="form-label-dash">Confirm New Password</label>
+              <input type="password" class="dash-input" placeholder="Repeat new password"/>
+            </div>
+            <button class="btn-gold" style="margin-top:8px;">
+              <i class="bi bi-lock"></i> Update Password
+            </button>
+          </div>
+        </div>
+
+        <div class="dash-card danger-card">
+          <h3 class="dash-card-title" style="color:#f87171;">Danger Zone</h3>
+          <p class="settings-desc" style="margin-bottom:16px;">Permanently delete your account and all listings. This action cannot be undone.</p>
+          <button class="btn-danger">
+            <i class="bi bi-trash3"></i> Delete My Account
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+  <!-- end dash-main -->
+
+
+  <!-- ══════════════════════════
+       DELETE CONFIRM MODAL
+  ══════════════════════════ -->
+  <div class="modal-overlay" id="deleteModal" style="display:none;">
+    <div class="modal-box">
+      <div class="modal-icon">🗑️</div>
+      <h3 class="modal-title">Delete Listing?</h3>
+      <p class="modal-desc">This will permanently remove the listing from NyumbaHub. This action cannot be undone.</p>
+      <div class="modal-actions">
+        <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+        <button class="modal-confirm" onclick="executeDelete()">Yes, Delete</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ── External JS Libraries ── -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- ── Shared JS ── -->
+  <script src="js/main.js"></script>
+  <!-- ── Page JS ── -->
+  <script src="js/dashboard.js"></script>
+
+</body>
+</html>

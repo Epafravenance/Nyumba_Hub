@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Browse Properties — NyumbaHub</title>
+
+  <!-- ── External Libraries ── -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+
+  <!-- ── Shared CSS ── -->
+  <link rel="stylesheet" href="css/style.css"/>
+  <!-- ── Page CSS ── -->
+  <link rel="stylesheet" href="css/listings.css"/>
+</head>
+<body>
+
+  <!-- ══════════════════════════
+       NAVBAR
+  ══════════════════════════ -->
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">Nyumba<span>Hub</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="listings.html" class="nav-active">Browse</a></li>
+      <li><a href="listings.html?type=rent">For Rent</a></li>
+      <li><a href="listings.html?type=sale">For Sale</a></li>
+      <li><a href="index.html#how">How It Works</a></li>
+      <li><a href="login.html">Sign In</a></li>
+      <li><a href="post-property.html" class="nav-cta">List Property</a></li>
+    </ul>
+    <div class="nav-toggle" id="navToggle" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+
+  <!-- ══════════════════════════
+       PAGE HEADER
+  ══════════════════════════ -->
+  <div class="page-header">
+    <div class="page-header-inner">
+      <p class="section-eyebrow">Tanzania's Largest Property Database</p>
+      <h1 class="page-title">Browse <em>Properties</em></h1>
+      <p class="page-subtitle">1,200+ verified listings across Tanzania — filter, explore and find your next home.</p>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════
+       FILTER BAR
+  ══════════════════════════ -->
+  <div class="filter-bar" id="filterBar">
+    <div class="filter-bar-inner">
+
+      <!-- Search input -->
+      <div class="filter-search">
+        <i class="bi bi-search filter-search-icon"></i>
+        <input type="text" class="filter-input" id="searchInput" placeholder="Search by title, location…"/>
+      </div>
+
+      <!-- Dropdowns -->
+      <div class="filter-dropdowns">
+
+        <div class="filter-group">
+          <label class="filter-label">City</label>
+          <select class="filter-select" id="filterCity">
+            <option value="">All Cities</option>
+            <option value="dar">Dar es Salaam</option>
+            <option value="arusha">Arusha</option>
+            <option value="zanzibar">Zanzibar</option>
+            <option value="mwanza">Mwanza</option>
+            <option value="dodoma">Dodoma</option>
+            <option value="moshi">Moshi</option>
+            <option value="tanga">Tanga</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label class="filter-label">Type</label>
+          <select class="filter-select" id="filterType">
+            <option value="">Any Type</option>
+            <option value="apartment">Apartment</option>
+            <option value="house">House</option>
+            <option value="villa">Villa</option>
+            <option value="office">Office</option>
+            <option value="land">Land</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label class="filter-label">Listing</label>
+          <select class="filter-select" id="filterListing">
+            <option value="">Rent or Buy</option>
+            <option value="rent">For Rent</option>
+            <option value="sale">For Sale</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label class="filter-label">Bedrooms</label>
+          <select class="filter-select" id="filterBeds">
+            <option value="">Any</option>
+            <option value="1">1+</option>
+            <option value="2">2+</option>
+            <option value="3">3+</option>
+            <option value="4">4+</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label class="filter-label">Max Price (TZS)</label>
+          <select class="filter-select" id="filterPrice">
+            <option value="">Any Price</option>
+            <option value="500000">500K</option>
+            <option value="1000000">1M</option>
+            <option value="2000000">2M</option>
+            <option value="5000000">5M</option>
+            <option value="10000000">10M+</option>
+          </select>
+        </div>
+
+      </div>
+
+      <!-- Sort + Reset -->
+      <div class="filter-actions">
+        <div class="filter-group">
+          <label class="filter-label">Sort By</label>
+          <select class="filter-select" id="filterSort">
+            <option value="newest">Newest First</option>
+            <option value="price-asc">Price: Low → High</option>
+            <option value="price-desc">Price: High → Low</option>
+          </select>
+        </div>
+        <button class="filter-reset-btn" id="resetBtn" onclick="resetFilters()">
+          <i class="bi bi-x-circle"></i> Reset
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════
+       MAIN CONTENT
+  ══════════════════════════ -->
+  <div class="listings-layout">
+
+    <!-- Results count + view toggle -->
+    <div class="results-bar">
+      <p class="results-count">
+        Showing <span id="resultCount">12</span> properties
+      </p>
+      <div class="view-toggle">
+        <button class="view-btn active" id="gridViewBtn" onclick="setView('grid')" title="Grid view">
+          <i class="bi bi-grid-3x3-gap"></i>
+        </button>
+        <button class="view-btn" id="listViewBtn" onclick="setView('list')" title="List view">
+          <i class="bi bi-list-ul"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Properties Grid -->
+    <div class="listings-grid" id="listingsGrid">
+
+      <!-- Card 1 -->
+      <a href="property.html" class="listing-card reveal">
+        <div class="listing-img-wrap">
+          <div class="listing-img prop-img-gradient-1">🏙️</div>
+          <span class="listing-badge badge-rent">For Rent</span>
+          <button class="listing-save" title="Save property" onclick="toggleSave(event, this)">
+            <i class="bi bi-heart"></i>
+          </button>
+        </div>
+        <div class="listing-body">
+          <p class="listing-location"><i class="bi bi-geo-alt-fill"></i> Masaki, Dar es Salaam</p>
+          <h3 class="listing-title">Luxury Ocean-View Apartment</h3>
+          <div class="listing-specs">
+            <span><i class="bi bi-door-open"></i> 3 Beds</span>
+            <span><i class="bi bi-droplet"></i> 2 Baths</span>
+            <span><i class="bi bi-aspect-ratio"></i> 120 m²</span>
+          </div>
+          <div class="listing-footer">
+            <div class="listing-price">TZS 3.2M <small>/ mo</small></div>
+            <span class="listing-tag">Apartment</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 2 -->
+      <a href="property.html" class="listing-card reveal reveal-delay-1">
+        <div class="listing-img-wrap">
+          <div class="listing-img prop-img-gradient-2">🏡</div>
+          <span class="listing-badge badge-sale">For Sale</span>
+          <button class="listing-save" title="Save property" onclick="toggleSave(event, this)">
+            <i class="bi bi-heart"></i>
+          </button>
+        </div>
+        <div class="listing-body">
+          <p class="listing-location"><i class="bi bi-geo-alt-fill"></i> Njiro, Arusha</p>
+          <h3 class="listing-title">Modern Family Villa</h3>
+          <div class="listing-specs">
+            <span><i class="bi bi-door-open"></i> 4 Beds</span>
+            <span><i class="bi bi-droplet"></i> 3 Baths</span>
+            <span><i class="bi bi-aspect-ratio"></i> 280 m²</span>
+          </div>
+          <div class="listing-footer">
+            <div class="listing-price">TZS 280M</div>
+            <span class="listing-tag">Villa</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 3 -->
+      <a href="property.html" class="listing-card reveal reveal-delay-2">
+        <div class="listing-img-wrap">
+          <div class="listing-img prop-img-gradient-3">🏖️</div>
+          <span class="listing-badge badge-rent">For Rent</span>
+          <button class="listing-save" title="Save property" onclick="toggleSave(event, this)">
+            <i class="bi bi-heart"></i>
+          </button>
+        </div>
+        <div class="listing-body">
+          <p class="listing-location"><i class="bi bi-geo-alt-fill"></i> Stone Town, Zanzibar</p>
+          <h3 class="listing-title">Heritage Beachfront Villa</h3>
+          <div class="listing-specs">
+            <span><i class="bi bi-door-open"></i> 5 Beds</span>
+            <span><i class="bi bi-droplet"></i> 4 Baths</span>
+            <span><i class="bi bi-aspect-ratio"></i> 350 m²</span>
+          </div>
+          <div class="listing-footer">
+            <div class="listing-price">TZS 5.5M <small>/ mo</small></div>
+            <span class="listing-tag">Villa</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 4 -->
+      <a href="property.html" class="listing-card reveal">
+        <div class="listing-img-wrap">
+          <div class="listing-img prop-img-gradient-4">🏢</div>
+          <span class="listing-badge badge-rent">For Rent</span>
+          <button class="listing-save" title="Save property" onclick="toggleSave(event, this)">
+            <i class="bi bi-heart"></i>
+          </button>
+        </div>
+        <div class="listing-body">
+          <p class="listing-location"><i class="bi bi-geo-alt-fill"></i> Kariakoo, Dar es Salaam</p>
+          <h3 class="listing-title">Modern Studio Apartment</h3>
+          <div class="listing-specs">
+            <span><i class="bi bi-door-open"></i> 1 Bed</span>
+            <span><i class="bi bi-droplet"></i> 1 Bath</span>
+            <span><i class="bi bi-aspect-ratio"></i> 45 m²</span>
+          </div>
+          <div class="listing-footer">
+            <div class="listing-price">TZS 650K <small>/ mo</small></div>
+            <span class="listing-tag">Apartment</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 5 -->
+      <a href="property.html" class="listing-card reveal reveal-delay-1">
+        <div class="listing-img-wrap">
+          <div class="listing-img prop-img-gradient-5">🏠</div>
+          <span class="listing-badge badge-sale">For Sale</span>
+          <button class="listing-save" title="Save property" onclick="toggleSave(event, this)">
+            <i class="bi bi-heart"></i>
+          </button>
+        </div>
+        <div class="listing-body">
+          <p class="listing-location"><i class="bi bi-geo-alt-fill"></i> Kijitonyama, Dar es Salaam</p>
+          <h3 class="listing-title">Executive Townhouse</h3>
+          <div class="listing-specs">
+            <span><i class="bi bi-door-open"></i> 3 Beds</span>
+            <span><i class="bi bi-droplet"></i> 2 Baths</span>
+            <span><i class="bi bi-aspect-ratio"></i> 180 m²</span>
+          </div>
+          <div class="listing-footer">
+            <div class="listing-price">TZS 195M</div>
+            <span class="listing-tag">House</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 6 -->
+      <a href="property.html" class="listing-card reveal reveal-delay-2">
+        <div class="listing-img-wrap">
+          <div class="listing-img prop-img-gradient-1">🌿</div>
+          <span class="listing-badge badge-sale">For Sale</span>
+          <button class="listing-save" title="Save property" onclick="toggleSave(event, this)">
+            <i class="bi bi-heart"></i>
+          </button>
+        </div>
+        <div class="listing-body">
+          <p class="listing-location"><i class="bi bi-geo-alt-fill"></i> Mbezi Beach, Dar es Salaam</p>
+          <h3 class="listing-title">Residential Plot — Prime Location</h3>
+          <div class="listing-specs">
+            <span><i class="bi bi-aspect-ratio"></i> 800 m²</span>
+            <span><i class="bi bi-geo"></i> Corner Plot</span>
+          </div>
+          <div class="listing-footer">
+            <div class="listing-price">TZS 85M</div>
+            <span class="listing-tag">Land</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 7 -->
+      <a href="property.html" class="listing-card reveal">
+        <div class="listing-img-wrap">
+          <div class="listing-img prop-img-gradient-3">🏬</div>
+          <span class="listing-badge badge-rent">For Rent</span>
+          <button class="listing-save" title="Save property" onclick="toggleSave(event, this)">
+            <i class="bi bi-heart"></i>
+          </button>
+        </div>
+        <div class="listing-body">
+          <p class="listing-location"><i class="bi bi-geo-alt-fill"></i> CBD, Dar es Salaam</p>
+          <h3 class="listing-title">Premium Office Space — 3rd Floor</h3>
+          <div class="listing-specs">
+            <span><i class="bi bi-aspect-ratio"></i> 200 m²</span>
+            <span><i class="bi bi-people"></i> Open Plan</span>
+          </div>
+          <div class="listing-footer">
+            <div class="listing-price">TZS 4.8M <small>/ mo</small></div>
+            <span class="listing-tag">Office</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 8 -->
+      <a href="property.html" class="listing-card reveal reveal-delay-1">
+        <div class="listing-img-wrap">
+          <div class="listing-img prop-img-gradient-2">🏡</div>
+          <span class="listing-badge badge-rent">For Rent</span>
+          <button class="listing-save" title="Save property" onclick="toggleSave(event, this)">
+            <i class="bi bi-heart"></i>
+          </button>
+        </div>
+        <div class="listing-body">
+          <p class="listing-location"><i class="bi bi-geo-alt-fill"></i> Njiro, Arusha</p>
+          <h3 class="listing-title">Cozy 2-Bedroom House</h3>
+          <div class="listing-specs">
+            <span><i class="bi bi-door-open"></i> 2 Beds</span>
+            <span><i class="bi bi-droplet"></i> 1 Bath</span>
+            <span><i class="bi bi-aspect-ratio"></i> 90 m²</span>
+          </div>
+          <div class="listing-footer">
+            <div class="listing-price">TZS 850K <small>/ mo</small></div>
+            <span class="listing-tag">House</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 9 -->
+      <a href="property.html" class="listing-card reveal reveal-delay-2">
+        <div class="listing-img-wrap">
+          <div class="listing-img prop-img-gradient-4">🏰</div>
+          <span class="listing-badge badge-sale">For Sale</span>
+          <button class="listing-save" title="Save property" onclick="toggleSave(event, this)">
+            <i class="bi bi-heart"></i>
+          </button>
+        </div>
+        <div class="listing-body">
+          <p class="listing-location"><i class="bi bi-geo-alt-fill"></i> Nungwi, Zanzibar</p>
+          <h3 class="listing-title">Seafront Luxury Villa</h3>
+          <div class="listing-specs">
+            <span><i class="bi bi-door-open"></i> 6 Beds</span>
+            <span><i class="bi bi-droplet"></i> 5 Baths</span>
+            <span><i class="bi bi-aspect-ratio"></i> 500 m²</span>
+          </div>
+          <div class="listing-footer">
+            <div class="listing-price">TZS 1.2B</div>
+            <span class="listing-tag">Villa</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 10 -->
+      <a href="property.html" class="listing-card reveal">
+        <div class="listing-img-wrap">
+          <div class="listing-img prop-img-gradient-5">🏢</div>
+          <span class="listing-badge badge-rent">For Rent</span>
+          <button class="listing-save" title="Save property" onclick="toggleSave(event, this)">
+            <i class="bi bi-heart"></i>
+          </button>
+        </div>
+        <div class="listing-body">
+          <p class="listing-location"><i class="bi bi-geo-alt-fill"></i> Sinza, Dar es Salaam</p>
+          <h3 class="listing-title">Self-Contained Studio</h3>
+          <div class="listing-specs">
+            <span><i class="bi bi-door-open"></i> 1 Bed</span>
+            <span><i class="bi bi-droplet"></i> 1 Bath</span>
+            <span><i class="bi bi-aspect-ratio"></i> 38 m²</span>
+          </div>
+          <div class="listing-footer">
+            <div class="listing-price">TZS 400K <small>/ mo</small></div>
+            <span class="listing-tag">Apartment</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 11 -->
+      <a href="property.html" class="listing-card reveal reveal-delay-1">
+        <div class="listing-img-wrap">
+          <div class="listing-img prop-img-gradient-2">🏘️</div>
+          <span class="listing-badge badge-sale">For Sale</span>
+          <button class="listing-save" title="Save property" onclick="toggleSave(event, this)">
+            <i class="bi bi-heart"></i>
+          </button>
+        </div>
+        <div class="listing-body">
+          <p class="listing-location"><i class="bi bi-geo-alt-fill"></i> Mwanza City</p>
+          <h3 class="listing-title">Lakeside Family Home</h3>
+          <div class="listing-specs">
+            <span><i class="bi bi-door-open"></i> 4 Beds</span>
+            <span><i class="bi bi-droplet"></i> 2 Baths</span>
+            <span><i class="bi bi-aspect-ratio"></i> 220 m²</span>
+          </div>
+          <div class="listing-footer">
+            <div class="listing-price">TZS 160M</div>
+            <span class="listing-tag">House</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 12 -->
+      <a href="property.html" class="listing-card reveal reveal-delay-2">
+        <div class="listing-img-wrap">
+          <div class="listing-img prop-img-gradient-3">🏡</div>
+          <span class="listing-badge badge-rent">For Rent</span>
+          <button class="listing-save" title="Save property" onclick="toggleSave(event, this)">
+            <i class="bi bi-heart"></i>
+          </button>
+        </div>
+        <div class="listing-body">
+          <p class="listing-location"><i class="bi bi-geo-alt-fill"></i> Moshi Town, Kilimanjaro</p>
+          <h3 class="listing-title">Mountain-View Bungalow</h3>
+          <div class="listing-specs">
+            <span><i class="bi bi-door-open"></i> 3 Beds</span>
+            <span><i class="bi bi-droplet"></i> 2 Baths</span>
+            <span><i class="bi bi-aspect-ratio"></i> 150 m²</span>
+          </div>
+          <div class="listing-footer">
+            <div class="listing-price">TZS 1.1M <small>/ mo</small></div>
+            <span class="listing-tag">House</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+    <!-- end listings-grid -->
+
+    <!-- Empty state (hidden by default) -->
+    <div class="empty-state" id="emptyState" style="display:none;">
+      <div class="empty-icon">🏚️</div>
+      <h3 class="empty-title">No Properties Found</h3>
+      <p class="empty-desc">Try adjusting your filters or search a different city.</p>
+      <button class="btn-gold" onclick="resetFilters()">Clear Filters</button>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination-wrap" id="paginationWrap">
+      <button class="page-btn disabled"><i class="bi bi-chevron-left"></i></button>
+      <button class="page-btn active">1</button>
+      <button class="page-btn">2</button>
+      <button class="page-btn">3</button>
+      <span class="page-dots">…</span>
+      <button class="page-btn">12</button>
+      <button class="page-btn"><i class="bi bi-chevron-right"></i></button>
+    </div>
+
+  </div>
+  <!-- end listings-layout -->
+
+
+  <!-- ── External JS Libraries ── -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- ── Shared JS ── -->
+  <script src="js/main.js"></script>
+  <!-- ── Page JS ── -->
+  <script src="js/listings.js"></script>
+
+</body>
+</html>
