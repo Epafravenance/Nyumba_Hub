@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Post a Property — NyumbaHub</title>
+
+  <!-- ── External Libraries ── -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+
+  <!-- ── Shared CSS ── -->
+  <link rel="stylesheet" href="css/style.css"/>
+  <!-- ── Page CSS ── -->
+  <link rel="stylesheet" href="css/post-property.css"/>
+</head>
+<body>
+
+  <!-- ══════════════════════════
+       NAVBAR
+  ══════════════════════════ -->
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">Nyumba<span>Hub</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="listings.html">Browse</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="login.html">Sign In</a></li>
+      <li><a href="post-property.html" class="nav-cta">List Property</a></li>
+    </ul>
+    <div class="nav-toggle" id="navToggle" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+
+  <!-- ══════════════════════════
+       PAGE HEADER
+  ══════════════════════════ -->
+  <div class="post-header">
+    <div class="post-header-inner">
+      <p class="section-eyebrow">Landlords & Agents</p>
+      <h1 class="post-header-title">Post a <em>Property</em></h1>
+      <p class="post-header-sub">Fill in your property details below. Your listing will be reviewed and published within 24 hours.</p>
+    </div>
+
+    <!-- Step indicator -->
+    <div class="steps-indicator">
+      <div class="step-dot active" id="dot1">
+        <span class="step-dot-num">1</span>
+        <span class="step-dot-label">Basic Info</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step-dot" id="dot2">
+        <span class="step-dot-num">2</span>
+        <span class="step-dot-label">Details</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step-dot" id="dot3">
+        <span class="step-dot-num">3</span>
+        <span class="step-dot-label">Photos</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step-dot" id="dot4">
+        <span class="step-dot-num">4</span>
+        <span class="step-dot-label">Review</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════
+       FORM LAYOUT
+  ══════════════════════════ -->
+  <div class="post-layout">
+
+    <!-- ── MAIN FORM ── -->
+    <div class="post-main">
+
+      <!-- ══════════════
+           STEP 1: BASIC INFO
+      ══════════════ -->
+      <div class="form-step active" id="step1">
+        <div class="step-header">
+          <span class="step-label">Step 1 of 4</span>
+          <h2 class="step-title">Basic Information</h2>
+          <p class="step-desc">Start with the core details of your property.</p>
+        </div>
+
+        <!-- Title -->
+        <div class="post-field">
+          <label class="post-label" for="propTitle">
+            Property Title <span class="required">*</span>
+          </label>
+          <input type="text" id="propTitle" class="post-input"
+            placeholder="e.g. Luxury 3-Bedroom Apartment with Ocean View"
+            maxlength="80"/>
+          <div class="field-hints">
+            <span class="field-error" id="propTitleError"></span>
+            <span class="char-count"><span id="titleCount">0</span>/80</span>
+          </div>
+        </div>
+
+        <!-- Listing type + Property category -->
+        <div class="post-row">
+          <div class="post-field">
+            <label class="post-label">Listing Type <span class="required">*</span></label>
+            <div class="option-pills">
+              <button type="button" class="option-pill active" data-group="listingType" data-val="rent" onclick="selectOption(this)">
+                <i class="bi bi-key"></i> For Rent
+              </button>
+              <button type="button" class="option-pill" data-group="listingType" data-val="sale" onclick="selectOption(this)">
+                <i class="bi bi-tag"></i> For Sale
+              </button>
+            </div>
+            <input type="hidden" id="listingType" value="rent"/>
+          </div>
+
+          <div class="post-field">
+            <label class="post-label">Property Type <span class="required">*</span></label>
+            <select class="post-input post-select" id="propCategory">
+              <option value="">Select type…</option>
+              <option value="apartment">Apartment</option>
+              <option value="house">House</option>
+              <option value="villa">Villa</option>
+              <option value="office">Office / Commercial</option>
+              <option value="land">Land / Plot</option>
+              <option value="warehouse">Warehouse</option>
+            </select>
+            <span class="field-error" id="propCategoryError"></span>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="post-field">
+          <label class="post-label" for="propDesc">
+            Description <span class="required">*</span>
+          </label>
+          <textarea id="propDesc" class="post-input post-textarea" rows="5"
+            placeholder="Describe your property — location highlights, interior features, building amenities, nearby landmarks, transport links…"
+            maxlength="1500"></textarea>
+          <div class="field-hints">
+            <span class="field-error" id="propDescError"></span>
+            <span class="char-count"><span id="descCount">0</span>/1500</span>
+          </div>
+        </div>
+
+        <!-- Price -->
+        <div class="post-row">
+          <div class="post-field">
+            <label class="post-label" for="propPrice">
+              Price (TZS) <span class="required">*</span>
+            </label>
+            <div class="input-with-prefix">
+              <span class="input-pre-label">TZS</span>
+              <input type="number" id="propPrice" class="post-input has-pre"
+                placeholder="e.g. 3200000" min="0"/>
+            </div>
+            <span class="field-error" id="propPriceError"></span>
+          </div>
+
+          <div class="post-field">
+            <label class="post-label">Price Period</label>
+            <div class="option-pills">
+              <button type="button" class="option-pill active" data-group="pricePeriod" data-val="month" onclick="selectOption(this)">/ Month</button>
+              <button type="button" class="option-pill" data-group="pricePeriod" data-val="year" onclick="selectOption(this)">/ Year</button>
+              <button type="button" class="option-pill" data-group="pricePeriod" data-val="total" onclick="selectOption(this)">Total</button>
+            </div>
+            <input type="hidden" id="pricePeriod" value="month"/>
+          </div>
+        </div>
+
+        <div class="step-nav">
+          <div></div>
+          <button class="btn-gold" onclick="goToStep(2)">
+            Next: Property Details <i class="bi bi-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+
+      <!-- ══════════════
+           STEP 2: DETAILS
+      ══════════════ -->
+      <div class="form-step" id="step2">
+        <div class="step-header">
+          <span class="step-label">Step 2 of 4</span>
+          <h2 class="step-title">Property Details</h2>
+          <p class="step-desc">Location, size, and features of your property.</p>
+        </div>
+
+        <!-- Location row -->
+        <div class="post-row">
+          <div class="post-field">
+            <label class="post-label" for="propCity">City <span class="required">*</span></label>
+            <select class="post-input post-select" id="propCity" onchange="updateDistricts()">
+              <option value="">Select city…</option>
+              <option value="dar">Dar es Salaam</option>
+              <option value="arusha">Arusha</option>
+              <option value="zanzibar">Zanzibar</option>
+              <option value="mwanza">Mwanza</option>
+              <option value="dodoma">Dodoma</option>
+              <option value="moshi">Moshi</option>
+              <option value="tanga">Tanga</option>
+            </select>
+            <span class="field-error" id="propCityError"></span>
+          </div>
+
+          <div class="post-field">
+            <label class="post-label" for="propDistrict">District / Suburb <span class="required">*</span></label>
+            <select class="post-input post-select" id="propDistrict">
+              <option value="">Select city first…</option>
+            </select>
+            <span class="field-error" id="propDistrictError"></span>
+          </div>
+        </div>
+
+        <!-- Full address -->
+        <div class="post-field">
+          <label class="post-label" for="propAddress">Street Address / Landmark</label>
+          <input type="text" id="propAddress" class="post-input"
+            placeholder="e.g. Near Shoprite Masaki, off Chole Road"/>
+        </div>
+
+        <!-- Rooms row -->
+        <div class="post-row three-col">
+          <div class="post-field">
+            <label class="post-label" for="propBeds">Bedrooms</label>
+            <div class="number-input-wrap">
+              <button type="button" class="num-btn" onclick="adjustNum('propBeds', -1)"><i class="bi bi-dash"></i></button>
+              <input type="number" id="propBeds" class="post-input num-input" value="0" min="0" max="20"/>
+              <button type="button" class="num-btn" onclick="adjustNum('propBeds', 1)"><i class="bi bi-plus"></i></button>
+            </div>
+          </div>
+          <div class="post-field">
+            <label class="post-label" for="propBaths">Bathrooms</label>
+            <div class="number-input-wrap">
+              <button type="button" class="num-btn" onclick="adjustNum('propBaths', -1)"><i class="bi bi-dash"></i></button>
+              <input type="number" id="propBaths" class="post-input num-input" value="0" min="0" max="20"/>
+              <button type="button" class="num-btn" onclick="adjustNum('propBaths', 1)"><i class="bi bi-plus"></i></button>
+            </div>
+          </div>
+          <div class="post-field">
+            <label class="post-label" for="propParking">Parking Bays</label>
+            <div class="number-input-wrap">
+              <button type="button" class="num-btn" onclick="adjustNum('propParking', -1)"><i class="bi bi-dash"></i></button>
+              <input type="number" id="propParking" class="post-input num-input" value="0" min="0" max="20"/>
+              <button type="button" class="num-btn" onclick="adjustNum('propParking', 1)"><i class="bi bi-plus"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Size + Floor -->
+        <div class="post-row">
+          <div class="post-field">
+            <label class="post-label" for="propSize">Property Size (m²)</label>
+            <input type="number" id="propSize" class="post-input" placeholder="e.g. 120" min="0"/>
+          </div>
+          <div class="post-field">
+            <label class="post-label" for="propFloor">Floor Number</label>
+            <input type="number" id="propFloor" class="post-input" placeholder="e.g. 3 (leave blank if N/A)" min="0"/>
+          </div>
+        </div>
+
+        <!-- Furnishing -->
+        <div class="post-field">
+          <label class="post-label">Furnishing Status</label>
+          <div class="option-pills">
+            <button type="button" class="option-pill active" data-group="furnishing" data-val="furnished" onclick="selectOption(this)">Fully Furnished</button>
+            <button type="button" class="option-pill" data-group="furnishing" data-val="semi" onclick="selectOption(this)">Semi-Furnished</button>
+            <button type="button" class="option-pill" data-group="furnishing" data-val="unfurnished" onclick="selectOption(this)">Unfurnished</button>
+          </div>
+          <input type="hidden" id="furnishing" value="furnished"/>
+        </div>
+
+        <!-- Amenities -->
+        <div class="post-field">
+          <label class="post-label">Amenities & Features</label>
+          <div class="amenities-check-grid">
+            <label class="amenity-check"><input type="checkbox" value="wifi"/> <i class="bi bi-wifi"></i> WiFi</label>
+            <label class="amenity-check"><input type="checkbox" value="ac"/> <i class="bi bi-snow"></i> Air Conditioning</label>
+            <label class="amenity-check"><input type="checkbox" value="pool"/> <i class="bi bi-droplet-fill"></i> Swimming Pool</label>
+            <label class="amenity-check"><input type="checkbox" value="gym"/> <i class="bi bi-bicycle"></i> Gym</label>
+            <label class="amenity-check"><input type="checkbox" value="security"/> <i class="bi bi-shield-check"></i> 24/7 Security</label>
+            <label class="amenity-check"><input type="checkbox" value="generator"/> <i class="bi bi-lightning-charge"></i> Generator</label>
+            <label class="amenity-check"><input type="checkbox" value="water"/> <i class="bi bi-water"></i> Water Storage</label>
+            <label class="amenity-check"><input type="checkbox" value="parking"/> <i class="bi bi-car-front"></i> Parking</label>
+            <label class="amenity-check"><input type="checkbox" value="garden"/> <i class="bi bi-trees"></i> Garden</label>
+            <label class="amenity-check"><input type="checkbox" value="balcony"/> <i class="bi bi-door-open"></i> Balcony</label>
+            <label class="amenity-check"><input type="checkbox" value="dstv"/> <i class="bi bi-tv"></i> DSTV Ready</label>
+            <label class="amenity-check"><input type="checkbox" value="elevator"/> <i class="bi bi-arrow-up-square"></i> Elevator</label>
+          </div>
+        </div>
+
+        <div class="step-nav">
+          <button class="btn-outline" onclick="goToStep(1)">
+            <i class="bi bi-arrow-left"></i> Back
+          </button>
+          <button class="btn-gold" onclick="goToStep(3)">
+            Next: Add Photos <i class="bi bi-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+
+      <!-- ══════════════
+           STEP 3: PHOTOS
+      ══════════════ -->
+      <div class="form-step" id="step3">
+        <div class="step-header">
+          <span class="step-label">Step 3 of 4</span>
+          <h2 class="step-title">Property Photos</h2>
+          <p class="step-desc">Upload up to 10 photos. The first photo will be your main cover image.</p>
+        </div>
+
+        <!-- Upload zone -->
+        <div class="upload-zone" id="uploadZone"
+          onclick="document.getElementById('photoInput').click()"
+          ondragover="handleDragOver(event)"
+          ondragleave="handleDragLeave(event)"
+          ondrop="handleDrop(event)">
+          <i class="bi bi-cloud-arrow-up upload-icon"></i>
+          <p class="upload-title">Drag & drop photos here</p>
+          <p class="upload-sub">or click to browse — JPG, PNG up to 5MB each</p>
+          <button type="button" class="upload-browse-btn" onclick="event.stopPropagation(); document.getElementById('photoInput').click()">
+            <i class="bi bi-folder2-open"></i> Browse Files
+          </button>
+          <input type="file" id="photoInput" accept="image/*" multiple style="display:none" onchange="handlePhotoSelect(event)"/>
+        </div>
+
+        <!-- Photo previews -->
+        <div class="photo-previews" id="photoPreviews"></div>
+
+        <p class="upload-note"><i class="bi bi-info-circle"></i> Drag photos to reorder. The first photo is your cover image.</p>
+
+        <div class="step-nav">
+          <button class="btn-outline" onclick="goToStep(2)">
+            <i class="bi bi-arrow-left"></i> Back
+          </button>
+          <button class="btn-gold" onclick="goToStep(4)">
+            Next: Review & Submit <i class="bi bi-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+
+      <!-- ══════════════
+           STEP 4: REVIEW
+      ══════════════ -->
+      <div class="form-step" id="step4">
+        <div class="step-header">
+          <span class="step-label">Step 4 of 4</span>
+          <h2 class="step-title">Review & Submit</h2>
+          <p class="step-desc">Review your listing before publishing. You can go back to make changes.</p>
+        </div>
+
+        <!-- Review card -->
+        <div class="review-card" id="reviewCard">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Contact info reminder -->
+        <div class="post-field">
+          <label class="post-label">Contact Phone (visible to tenants)</label>
+          <div class="input-with-prefix">
+            <span class="input-pre-label">+255</span>
+            <input type="tel" id="contactPhone" class="post-input has-pre" placeholder="700 000 000"/>
+          </div>
+          <span class="field-error" id="contactPhoneError"></span>
+        </div>
+
+        <!-- WhatsApp toggle -->
+        <div class="post-field">
+          <label class="post-label">WhatsApp Contact</label>
+          <div class="toggle-row">
+            <label class="toggle-switch-post">
+              <input type="checkbox" id="enableWhatsapp" checked/>
+              <span class="toggle-slider-post"></span>
+            </label>
+            <span class="toggle-text">Allow tenants to contact me via WhatsApp</span>
+          </div>
+        </div>
+
+        <!-- Terms -->
+        <div class="post-field">
+          <label class="check-label-post">
+            <input type="checkbox" id="agreePost" class="check-input-post"/>
+            <span class="check-custom-post"></span>
+            I confirm this listing is accurate and I agree to NyumbaHub's
+            <a href="#" class="inline-link-post">Listing Guidelines</a> and
+            <a href="#" class="inline-link-post">Terms of Service</a>
+          </label>
+          <span class="field-error" id="agreePostError"></span>
+        </div>
+
+        <!-- Alert -->
+        <div class="form-alert-post" id="submitAlert" style="display:none;"></div>
+
+        <div class="step-nav">
+          <button class="btn-outline" onclick="goToStep(3)">
+            <i class="bi bi-arrow-left"></i> Back
+          </button>
+          <button class="btn-gold" id="submitBtn" onclick="handleSubmit()">
+            <span class="btn-text"><i class="bi bi-send-check"></i> Submit Listing</span>
+            <span class="btn-loader" style="display:none;"><i class="bi bi-arrow-clockwise spin"></i> Submitting…</span>
+          </button>
+        </div>
+      </div>
+
+
+      <!-- ══════════════
+           SUCCESS STATE
+      ══════════════ -->
+      <div class="form-step" id="stepSuccess">
+        <div class="success-wrap">
+          <div class="success-icon">🎉</div>
+          <h2 class="success-title">Listing Submitted!</h2>
+          <p class="success-desc">Your property has been submitted for review. We'll publish it within 24 hours and notify you by phone and email.</p>
+          <div class="success-actions">
+            <a href="dashboard.html" class="btn-gold">Go to Dashboard</a>
+            <a href="post-property.html" class="btn-outline">Post Another</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- end post-main -->
+
+
+    <!-- ── SIDEBAR: Tips ── -->
+    <div class="post-sidebar">
+
+      <div class="tip-card">
+        <p class="tip-card-label">💡 Listing Tips</p>
+        <ul class="tip-list">
+          <li><i class="bi bi-check-circle-fill"></i> Use a clear, descriptive title that includes location</li>
+          <li><i class="bi bi-check-circle-fill"></i> Write at least 100 words in your description</li>
+          <li><i class="bi bi-check-circle-fill"></i> Upload 5+ high-quality photos for more views</li>
+          <li><i class="bi bi-check-circle-fill"></i> Always include the exact district/suburb</li>
+          <li><i class="bi bi-check-circle-fill"></i> List all amenities — they increase interest</li>
+          <li><i class="bi bi-check-circle-fill"></i> Make sure your WhatsApp number is active</li>
+        </ul>
+      </div>
+
+      <div class="tip-card tip-card-gold">
+        <p class="tip-card-label">📊 Did You Know?</p>
+        <p class="tip-stat">Listings with <strong>5+ photos</strong> get <strong>3× more views</strong> than those without.</p>
+        <p class="tip-stat" style="margin-top:10px;">Listings with complete details get <strong>2× more inquiries</strong>.</p>
+      </div>
+
+      <div class="tip-card">
+        <p class="tip-card-label">🔒 Your Listing Is Safe</p>
+        <p class="tip-desc">All listings are reviewed by our team before going live. We never share your personal details without consent.</p>
+      </div>
+
+    </div>
+
+  </div>
+  <!-- end post-layout -->
+
+
+  <!-- ── External JS Libraries ── -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- ── Shared JS ── -->
+  <script src="js/main.js"></script>
+  <!-- ── Page JS ── -->
+  <script src="js/post-property.js"></script>
+
+</body>
+</html>

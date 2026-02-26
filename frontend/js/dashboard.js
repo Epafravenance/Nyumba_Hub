@@ -176,9 +176,12 @@ function executeDelete() {
 }
 
 // Close modal on overlay click
-document.getElementById('deleteModal').addEventListener('click', (e) => {
-  if (e.target === document.getElementById('deleteModal')) closeModal();
-});
+const deleteModalEl = document.getElementById('deleteModal');
+if (deleteModalEl) {
+  deleteModalEl.addEventListener('click', (e) => {
+    if (e.target === deleteModalEl) closeModal();
+  });
+}
 
 // Fadeout animation for deleted rows
 const style = document.createElement('style');

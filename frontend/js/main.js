@@ -9,11 +9,15 @@
    NAVBAR — Scroll Effect
    Adds .scrolled class when user scrolls past 50px
 ──────────────────────────── */
+// navbar may not exist on every page (e.g. dashboard has its own layout)
 const navbar = document.getElementById('navbar');
 
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 50);
-});
+if (navbar) {
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  });
+}
+
 
 
 /* ────────────────────────────
@@ -23,6 +27,9 @@ window.addEventListener('scroll', () => {
 function toggleNav() {
   const links  = document.getElementById('navLinks');
   const toggle = document.getElementById('navToggle');
+
+  // bail out when not on a page that has the mobile nav elements
+  if (!links || !toggle) return;
 
   links.classList.toggle('open');
   const isOpen = links.classList.contains('open');
