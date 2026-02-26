@@ -81,7 +81,7 @@
     <!-- Top Bar -->
     <header class="dash-topbar">
       <div class="topbar-left">
-        <button class="sidebar-toggle" onclick="toggleSidebar()"><i class="bi bi-list"></i></button>
+        <button class="sidebar-toggle" onclick="toggleSidebar()" title="Toggle Sidebar"><i class="bi bi-list"></i></button>
         <div class="topbar-breadcrumb">
           <span>Admin</span>
           <i class="bi bi-chevron-right"></i>
@@ -696,17 +696,17 @@
           <div class="settings-list">
             <div class="form-field-dash">
               <label class="form-label-dash">Site Name</label>
-              <input type="text" class="dash-input" value="NyumbaHub"/>
+              <input type="text" class="dash-input" value="NyumbaHub" title="Site name for NyumbaHub platform"/>
             </div>
             <div class="form-field-dash">
               <label class="form-label-dash">Contact Email</label>
-              <input type="email" class="dash-input" value="hello@nyumbahub.co.tz"/>
+              <input type="email" class="dash-input" value="hello@nyumbahub.co.tz" title="Contact email address"/>
             </div>
             <div class="form-field-dash">
               <label class="form-label-dash">Support WhatsApp</label>
-              <input type="text" class="dash-input" value="+255 700 000 000"/>
+              <input type="text" class="dash-input" value="+255 700 000 000" title="Support WhatsApp number"/>
             </div>
-            <button class="btn-gold" style="margin-top:8px;" onclick="showAdminToast('Settings saved!')">
+            <button type="button" class="btn-gold" style="margin-top:8px;" onclick="showAdminToast('Settings saved!')">
               <i class="bi bi-check2"></i> Save Changes
             </button>
           </div>
@@ -721,7 +721,7 @@
                 <p class="settings-desc">Skip manual review for verified landlords</p>
               </div>
               <label class="toggle-switch">
-                <input type="checkbox"/>
+                <input type="checkbox" title="Auto-approve listings for verified landlords"/>
                 <span class="toggle-slider"></span>
               </label>
             </div>
@@ -731,7 +731,7 @@
                 <p class="settings-desc">Users must verify phone before posting</p>
               </div>
               <label class="toggle-switch">
-                <input type="checkbox" checked/>
+                <input type="checkbox" checked title="Require users to verify their phone before posting listings"/>
                 <span class="toggle-slider"></span>
               </label>
             </div>
@@ -740,7 +740,7 @@
                 <p class="settings-label">Max Photos per Listing</p>
                 <p class="settings-desc">Currently set to 10</p>
               </div>
-              <input type="number" class="dash-input" value="10" style="width:70px;text-align:center;"/>
+              <input type="number" class="dash-input dash-input-number" value="10" title="Maximum number of photos per listing" placeholder="10"/>
             </div>
           </div>
         </div>
@@ -748,7 +748,7 @@
         <div class="dash-card danger-card">
           <h3 class="dash-card-title" style="color:#f87171;">Maintenance</h3>
           <p class="settings-desc" style="margin-bottom:16px;">Put the site in maintenance mode. All public pages will show a coming-soon message.</p>
-          <button class="btn-danger">
+          <button type="button" class="btn-danger">
             <i class="bi bi-wrench"></i> Enable Maintenance Mode
           </button>
         </div>
